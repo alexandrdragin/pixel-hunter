@@ -1,19 +1,18 @@
+import intro from '../templates/intro';
+
+import greeting from '../templates/greeting';
+import rules from '../templates/rules';
+import game1 from '../templates/game1';
+import game2 from '../templates/game2';
+import game3 from '../templates/game3';
+import stats from '../templates/stats';
+
 (() => {
 
-  let loadTemplate = (templateName) => {
-    let node = document.createElement('span');
-    let template = document.getElementById(templateName);
-    let content = template.content ? template.content : template;
-    node.appendChild(content);
-    return node.cloneNode(true);
-  };
-
-
   // Rules
-  let rulesElement = loadTemplate('rules');
-  let rulesSubmit = rulesElement.querySelector('.rules__button');
+  let rulesSubmit = rules.querySelector('.rules__button');
 
-  rulesElement.querySelector('.rules__input').oninput = (evt) => {
+  rules.querySelector('.rules__input').oninput = (evt) => {
     if (evt.target.value) {
       rulesSubmit.removeAttribute('disabled');
     } else {
@@ -33,13 +32,13 @@
   mainElement.after(switcher);
 
   let slides = [
-    loadTemplate('intro'),
-    loadTemplate('greeting'),
-    rulesElement,
-    loadTemplate('game-1'),
-    loadTemplate('game-2'),
-    loadTemplate('game-3'),
-    loadTemplate('stats')
+    intro,
+    greeting,
+    rules,
+    game1,
+    game2,
+    game3,
+    stats
   ];
   let current = -1;
 
@@ -62,4 +61,5 @@
   };
 
   select(0);
+
 })();
