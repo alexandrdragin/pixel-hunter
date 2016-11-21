@@ -1,7 +1,6 @@
 import getElementFromTemplate from '../js/getElementFromTemplate';
 
-const rules = getElementFromTemplate(`<template id="rules">
-  <header class="header">
+const rules = getElementFromTemplate(`<header class="header">
     <div class="header__back">
       <span class="back">
         <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
@@ -24,7 +23,6 @@ const rules = getElementFromTemplate(`<template id="rules">
       <input class="rules__input" type="text" placeholder="Ваше Имя">
       <button class="rules__button  continue" type="submit" disabled>Go!</button>
     </form>
-  </div>
-</template>`);
+  </div>`);
 
 export default rules;

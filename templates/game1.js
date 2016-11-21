@@ -1,7 +1,6 @@
 import getElementFromTemplate from '../js/getElementFromTemplate';
 
-const game1 = getElementFromTemplate(`<template id="game-1">
-  <header class="header">
+const game1 = getElementFromTemplate(`<header class="header">
     <div class="header__back">
         <span class="back">
           <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
@@ -55,7 +54,6 @@ const game1 = getElementFromTemplate(`<template id="game-1">
         <li class="stats__result stats__result--unknown"></li>
       </ul>
     </div>
-  </div>
-</template>`);
+  </div>`);
 
 export default game1;

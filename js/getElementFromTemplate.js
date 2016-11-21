@@ -1,5 +1,5 @@
-const getElementFromTemplate = (content) => {
-  let node = document.createElement('span');
+const getElementFromTemplate = (content, containerType = 'div') => {
+  let node = document.createElement(containerType);
   node.innerHTML = content;
   return node.cloneNode(true);
 };

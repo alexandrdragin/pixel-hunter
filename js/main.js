@@ -61,5 +61,4 @@ import stats from '../templates/stats';
   };
 
   select(0);
-
 })();
