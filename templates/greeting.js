@@ -19,7 +19,7 @@ const greeting = getElementFromTemplate(`<div class="greeting  central--blur">
 
 const greeting__continue = greeting.querySelector('.greeting__continue');
 
-const handler = (e) => renderModule(rules);
+const handler = (e) => draw(rules);
 greeting__continue.addEventListener('click', handler);
 
 export default greeting;

@@ -55,6 +55,7 @@ for (const answer of answers) {
   answer.onclick = (e) => {
     e.preventDefault();
     draw(game3);
-};
+  };
+}
 
 export default game2;
