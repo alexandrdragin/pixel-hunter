@@ -1,5 +1,8 @@
 import getElementFromTemplate from '../js/getElementFromTemplate';
 
+import game3 from '../templates/game3';
+import draw from '../js/draw.js';
+
 const game2 = getElementFromTemplate(`<header class="header">
     <div class="header__back">
       <span class="back">
@@ -45,5 +48,13 @@ const game2 = getElementFromTemplate(`<header class="header">
     </div>
   </div>
 `);
+
+const answers = game2.querySelectorAll('.game__answer');
+
+for (const answer of answers) {
+  answer.onclick = (e) => {
+    e.preventDefault();
+    draw(game3);
+};
 
 export default game2;
