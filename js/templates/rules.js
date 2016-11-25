@@ -1,7 +1,7 @@
-import getElementFromTemplate from '../js/getElementFromTemplate';
+import getElementFromTemplate from '../getElementFromTemplate';
 
-import game1 from '../templates/game1';
-import draw from '../js/draw';
+import game1 from './game1';
+import draw from '../draw';
 
 const rules = getElementFromTemplate(`<header class="header">
     <div class="header__back">

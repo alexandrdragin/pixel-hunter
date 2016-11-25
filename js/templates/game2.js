@@ -1,9 +1,9 @@
-import getElementFromTemplate from '../js/getElementFromTemplate';
+import getElementFromTemplate from '../getElementFromTemplate';
 
-import stats from '../templates/stats';
-import draw from '../js/draw.js';
+import game3 from './game3';
+import draw from '../draw';
 
-const game3 = getElementFromTemplate(`<header class="header">
+const game2 = getElementFromTemplate(`<header class="header">
     <div class="header__back">
       <span class="back">
         <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
@@ -18,16 +18,18 @@ const game3 = getElementFromTemplate(`<header class="header">
     </div>
   </header>
   <div class="game">
-    <p class="game__task">Найдите рисунок среди изображений</p>
-    <form class="game__content  game__content--triple">
+    <p class="game__task">Угадай, фото или рисунок?</p>
+    <form class="game__content  game__content--wide">
       <div class="game__option">
-        <img src="http://placehold.it/304x455" alt="Option 1" width="304" height="455">
-      </div>
-      <div class="game__option  game__option--selected">
-        <img src="http://placehold.it/304x455" alt="Option 1" width="304" height="455">
-      </div>
-      <div class="game__option">
-        <img src="http://placehold.it/304x455" alt="Option 1" width="304" height="455">
+        <img src="http://placehold.it/705x455" alt="Option 1" width="705" height="455">
+        <label class="game__answer  game__answer--photo">
+          <input name="question1" type="radio" value="photo">
+          <span>Фото</span>
+        </label>
+        <label class="game__answer  game__answer--wide  game__answer--paint">
+          <input name="question1" type="radio" value="paint">
+          <span>Рисунок</span>
+        </label>
       </div>
     </form>
     <div class="stats">
@@ -47,16 +49,15 @@ const game3 = getElementFromTemplate(`<header class="header">
   </div>
 `);
 
-const answers = game3.querySelectorAll('.game__option');
+const answers = game2.querySelectorAll('.game__answer');
 
 const handler = (e) => {
   e.preventDefault();
-  draw(stats);
+  draw(game3);
 };
 
 for (const answer of answers) {
   answer.onclick = handler;
 }
 
-
-export default game3;
+export default game2;

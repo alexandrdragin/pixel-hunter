@@ -1,4 +1,4 @@
-import getElementFromTemplate from '../js/getElementFromTemplate';
+import getElementFromTemplate from '../getElementFromTemplate';
 
 const stats = getElementFromTemplate(`<header class="header">
     <div class="header__back">

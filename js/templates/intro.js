@@ -1,7 +1,7 @@
-import getElementFromTemplate from '../js/getElementFromTemplate';
+import getElementFromTemplate from '../getElementFromTemplate';
 
-import greeting from '../templates/greeting';
-import draw from '../js/draw.js';
+import greeting from './greeting';
+import draw from '../draw.js';
 
 const intro = getElementFromTemplate(`<div id="intro" class="intro">
       <h1 class="intro__asterisk">*</h1>
@@ -10,9 +10,9 @@ const intro = getElementFromTemplate(`<div id="intro" class="intro">
     </div>
 `);
 
-const intro__asterisk = intro.querySelector('.intro__asterisk');
+const introAsterisk = intro.querySelector('.intro__asterisk');
 
 const handler = (e) => draw(greeting);
-intro__asterisk.addEventListener('click', handler);
+introAsterisk.addEventListener('click', handler);
 
 export default intro;
