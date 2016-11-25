@@ -61,11 +61,13 @@ const game1 = getElementFromTemplate(`<header class="header">
 
 const answers = game1.querySelectorAll('.game__answer');
 
+const handler = (e) => {
+  e.preventDefault();
+  draw(game2);
+};
+
 for (const answer of answers) {
-  answer.onclick = (e) => {
-    e.preventDefault();
-    draw(game2);
-  };
+  answer.onclick = handler;
 }
 
 export default game1;
