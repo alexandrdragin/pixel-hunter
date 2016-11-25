@@ -1,5 +1,8 @@
 import getElementFromTemplate from '../js/getElementFromTemplate';
 
+import game1 from '../templates/game1';
+import draw from '../js/draw';
+
 const rules = getElementFromTemplate(`<header class="header">
     <div class="header__back">
       <span class="back">
@@ -24,5 +27,21 @@ const rules = getElementFromTemplate(`<header class="header">
       <button class="rules__button  continue" type="submit" disabled>Go!</button>
     </form>
   </div>`);
+
+// Rules
+let rulesSubmit = rules.querySelector('.rules__button');
+
+rules.querySelector('.rules__input').oninput = (evt) => {
+  if (evt.target.value) {
+    rulesSubmit.removeAttribute('disabled');
+  } else {
+    rulesSubmit.setAttribute('disabled', '');
+  }
+};
+
+rulesSubmit.onclick = (e) => {
+  e.preventDefault();
+  draw(game1);
+};
 
 export default rules;
