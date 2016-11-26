@@ -3,6 +3,18 @@ import getElementFromTemplate from '../getElementFromTemplate';
 import game3 from './game3';
 import draw from '../draw';
 
+const game2Map = {
+  game__timer: 'NN',
+  heart: {
+    empty: 'img/heart__empty.svg',
+    full: 'img/heart__full.svg'
+  },
+  game: {
+    game__task: 'Угадай, фото или рисунок',
+    game__option1: 'http://placehold.it/705x455'
+  }
+};
+
 const game2 = getElementFromTemplate(`<header class="header">
     <div class="header__back">
       <span class="back">
@@ -10,18 +22,18 @@ const game2 = getElementFromTemplate(`<header class="header">
         <img src="img/logo_small.png" width="101" height="44">
       </span>
     </div>
-    <h1 class="game__timer">NN</h1>
+    <h1 class="game__timer">${game2Map.game__timer}</h1>
     <div class="game__lives">
-      <img src="img/heart__empty.svg" class="game__heart" alt="Life" width="32" height="32">
-      <img src="img/heart__full.svg" class="game__heart" alt="Life" width="32" height="32">
-      <img src="img/heart__full.svg" class="game__heart" alt="Life" width="32" height="32">
+      <img src="${game2Map.heart.empty}" class="game__heart" alt="Life" width="32" height="32">
+      <img src="${game2Map.heart.full}" class="game__heart" alt="Life" width="32" height="32">
+      <img src="${game2Map.heart.full}" class="game__heart" alt="Life" width="32" height="32">
     </div>
   </header>
   <div class="game">
-    <p class="game__task">Угадай, фото или рисунок?</p>
+    <p class="game__task">${game2Map.game.game__task}</p>
     <form class="game__content  game__content--wide">
       <div class="game__option">
-        <img src="http://placehold.it/705x455" alt="Option 1" width="705" height="455">
+        <img src="${game2Map.game.game__option1}" alt="Option 1" width="705" height="455">
         <label class="game__answer  game__answer--photo">
           <input name="question1" type="radio" value="photo">
           <span>Фото</span>

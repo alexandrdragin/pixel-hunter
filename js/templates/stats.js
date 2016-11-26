@@ -94,10 +94,10 @@ const stats = getElementFromTemplate(`<header class="header">
         <td class="result__extra">${statsMap.score1.bonus3.bonus__forwhat}</td>
         <td class="result__extra">${statsMap.score1.bonus3.result__extra}<span class="stats__result stats__result--slow"></span></td>
         <td class="result__points">${statsMap.score1.bonus3.result__points}</td>
-        <td class="result__total">${statsMap.score1.bonus3.result__total}/td>
+        <td class="result__total">${statsMap.score1.bonus3.result__total}</td>
       </tr>
       <tr>
-        <td colspan="5" class="result__total  result__total--final">${statsMap.score1.finalscore1}</td>
+        <td colspan="5" class="result__total  result__total--final">${statsMap.score1.finalscore}</td>
       </tr>
     </table>
     <table class="result__table">
