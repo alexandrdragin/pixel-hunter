@@ -3,7 +3,7 @@ import getElementFromTemplate from '../getElementFromTemplate.js';
 import game2 from './game2.js';
 import draw from '../draw.js';
 
-import header from './header.js'
+import header from './header.js';
 import statsInGame from './statsInGame.js';
 
 const game1Map = {

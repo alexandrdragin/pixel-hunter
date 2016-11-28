@@ -16,13 +16,13 @@ const statsMap = {
     },
     bonus2: {
       bonusForWhat: 'Бонус за жизни:',
-      resultNumber: '2&nbsp;',
+      resultExtra: '2&nbsp;',
       resultPoints: '×&nbsp;50',
       resultTotal: '100'
     },
     bonus3: {
       bonusForWhat: 'Штраф за медлительность:',
-      resultNumber: '2&nbsp;',
+      resultExtra: '2&nbsp;',
       resultPoints: '×&nbsp;50',
       resultTotal: '-100'
     },
@@ -39,7 +39,7 @@ const statsMap = {
     resultTotal: '900',
     bonus1: {
       bonusForWhat: 'Бонус за жизни:',
-      resultNumber: '2&nbsp;',
+      resultExtra: '2&nbsp;',
       resultPoints: '×&nbsp;50',
       resultTotal: '100'
     },
