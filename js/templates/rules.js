@@ -16,9 +16,7 @@ const rulesMap = {
   rulesButton: 'Go!'
 };
 
-const rules = getElementFromTemplate(`<header class="header">
-  ${smallHeader}
-  </header>
+const rulesBlock = (`
   <div class="rules  central--none">
     <h1 class="rules__title">${rulesMap.rulesTitle}</h1>
     <p class="rules__description"> Угадай ${rulesMap.rulesDescription.try} для каждого изображения фото
@@ -30,6 +28,12 @@ const rules = getElementFromTemplate(`<header class="header">
       <button class="rules__button  continue" type="submit" disabled>${rulesMap.rulesButton}</button>
     </form>
   </div>`);
+
+const rules = getElementFromTemplate(`<header class="header">
+  ${smallHeader}
+  </header>
+  ${rulesBlock}
+`);
 
 // Rules
 let rulesSubmit = rules.querySelector('.rules__button');

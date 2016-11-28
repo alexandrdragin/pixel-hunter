@@ -1,4 +1,4 @@
-const statsInGame = `<div class="stats">
+const statsBlock = `<div class="stats">
   <ul class="stats">
     <li class="stats__result stats__result--wrong"></li>
     <li class="stats__result stats__result--slow"></li>
@@ -13,4 +13,4 @@ const statsInGame = `<div class="stats">
   </ul>
 </div>`;
 
-export default statsInGame;
+export default statsBlock;

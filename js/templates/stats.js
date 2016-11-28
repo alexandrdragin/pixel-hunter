@@ -47,9 +47,7 @@ const statsMap = {
   },
 };
 
-const stats = getElementFromTemplate(`<header class="header">
-  ${smallHeader}
-  </header>
+const result = (`
   <div class="result">
     <h1>${statsMap.h1}</h1>
     <table class="result__table">
@@ -150,5 +148,11 @@ const stats = getElementFromTemplate(`<header class="header">
       </tr>
     </table>
   </div>`);
+
+const stats = getElementFromTemplate(`<header class="header">
+  ${smallHeader}
+  </header>
+  ${result}`
+);
 
 export default stats;
