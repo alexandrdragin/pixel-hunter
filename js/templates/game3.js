@@ -3,61 +3,31 @@ import getElementFromTemplate from '../getElementFromTemplate';
 import stats from './stats';
 import draw from '../draw.js';
 
+import header from './header.js';
+import statsInGame from './statsInGame.js';
+
 const game3Map = {
-  game__timer: 'NN',
-  heart: {
-    empty: 'img/heart__empty.svg',
-    full: 'img/heart__full.svg'
-  },
-  game: {
-    game__task: 'Найдите рисунок среди изображений',
-    game__option1: 'http://placehold.it/304x455',
-    game__option2: 'http://placehold.it/304x455',
-    game__option3: 'http://placehold.it/304x455'
-  }
+  gameTask: 'Найдите рисунок среди изображений',
+  gameOption1: 'http://placehold.it/304x455',
+  gameOption2: 'http://placehold.it/304x455',
+  gameOption3: 'http://placehold.it/304x455'
 };
 
-const game3 = getElementFromTemplate(`<header class="header">
-    <div class="header__back">
-      <span class="back">
-        <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
-        <img src="img/logo_small.png" width="101" height="44">
-      </span>
-    </div>
-    <h1 class="game__timer">${game3Map.game__timer}</h1>
-    <div class="game__lives">
-      <img src="${game3Map.heart.empty}" class="game__heart" alt="Life" width="32" height="32">
-      <img src="${game3Map.heart.full}" class="game__heart" alt="Life" width="32" height="32">
-      <img src="${game3Map.heart.full}" class="game__heart" alt="Life" width="32" height="32">
-    </div>
-  </header>
+const game3 = getElementFromTemplate(`${header}
   <div class="game">
-    <p class="game__task">${game3Map.game.game__task}</p>
+    <p class="game__task">${game3Map.gameTask}</p>
     <form class="game__content  game__content--triple">
       <div class="game__option">
-        <img src="${game3Map.game.game__option1}" alt="Option 1" width="304" height="455">
+        <img src="${game3Map.gameOption1}" alt="Option 1" width="304" height="455">
       </div>
       <div class="game__option  game__option--selected">
-        <img src="${game3Map.game.game__option2}" alt="Option 2" width="304" height="455">
+        <img src="${game3Map.gameOption2}" alt="Option 2" width="304" height="455">
       </div>
       <div class="game__option">
-        <img src="${game3Map.game.game__option3}" alt="Option 3" width="304" height="455">
+        <img src="${game3Map.gameOption3}" alt="Option 3" width="304" height="455">
       </div>
     </form>
-    <div class="stats">
-      <ul class="stats">
-        <li class="stats__result stats__result--wrong"></li>
-        <li class="stats__result stats__result--slow"></li>
-        <li class="stats__result stats__result--fast"></li>
-        <li class="stats__result stats__result--correct"></li>
-        <li class="stats__result stats__result--wrong"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--slow"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--fast"></li>
-        <li class="stats__result stats__result--unknown"></li>
-      </ul>
-    </div>
+    ${statsInGame}
   </div>
 `);
 

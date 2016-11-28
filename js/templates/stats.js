@@ -1,63 +1,60 @@
 import getElementFromTemplate from '../getElementFromTemplate';
 
+import smallHeader from './smallHeader.js';
+
 const statsMap = {
   h1: 'Победа!',
   score1: {
-    result__number: '1.',
-    result__points: '×&nbsp;100',
-    result__total: '900',
+    resultNumber: '1.',
+    resultPoints: '×&nbsp;100',
+    resultTotal: '900',
     bonus1: {
-      bonus__forwhat: 'Бонус за скорость:',
-      result__extra: '1&nbsp;',
-      result__points: '×&nbsp;50',
-      result__total: '50'
+      bonusForWhat: 'Бонус за скорость:',
+      resultExtra: '1&nbsp;',
+      resultPoints: '×&nbsp;50',
+      resultTotal: '50'
     },
     bonus2: {
-      bonus__forwhat: 'Бонус за жизни:',
-      result__number: '2&nbsp;',
-      result__points: '×&nbsp;50',
-      result__total: '100'
+      bonusForWhat: 'Бонус за жизни:',
+      resultNumber: '2&nbsp;',
+      resultPoints: '×&nbsp;50',
+      resultTotal: '100'
     },
     bonus3: {
-      bonus__forwhat: 'Штраф за медлительность:',
-      result__number: '2&nbsp;',
-      result__points: '×&nbsp;50',
-      result__total: '-100'
+      bonusForWhat: 'Штраф за медлительность:',
+      resultNumber: '2&nbsp;',
+      resultPoints: '×&nbsp;50',
+      resultTotal: '-100'
     },
     finalscore: '950'
   },
   score2: {
-    result__number: '2.',
-    result__points: '',
-    result__total: 'fail'
+    resultNumber: '2.',
+    resultPoints: '',
+    resultTotal: 'fail'
   },
   score3: {
-    result__number: '3.',
-    result__points: '×&nbsp;100',
-    result__total: '900',
+    resultNumber: '3.',
+    resultPoints: '×&nbsp;100',
+    resultTotal: '900',
     bonus1: {
-      bonus__forwhat: 'Бонус за жизни:',
-      result__number: '2&nbsp;',
-      result__points: '×&nbsp;50',
-      result__total: '100'
+      bonusForWhat: 'Бонус за жизни:',
+      resultNumber: '2&nbsp;',
+      resultPoints: '×&nbsp;50',
+      resultTotal: '100'
     },
     finalscore: '1000'
   },
 };
 
 const stats = getElementFromTemplate(`<header class="header">
-    <div class="header__back">
-      <span class="back">
-        <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
-        <img src="img/logo_small.png" width="101" height="44">
-      </span>
-    </div>
+  ${smallHeader}
   </header>
   <div class="result">
     <h1>${statsMap.h1}</h1>
     <table class="result__table">
       <tr>
-        <td class="result__number">${statsMap.score1.result__number}</td>
+        <td class="resultNumber">${statsMap.score1.resultNumber}</td>
         <td colspan="2">
           <ul class="stats">
             <li class="stats__result stats__result--wrong"></li>
@@ -72,37 +69,37 @@ const stats = getElementFromTemplate(`<header class="header">
             <li class="stats__result stats__result--unknown"></li>
           </ul>
         </td>
-        <td class="result__points">${statsMap.score1.result__points}</td>
-        <td class="result__total">${statsMap.score1.result__total}</td>
+        <td class="resultPoints">${statsMap.score1.resultPoints}</td>
+        <td class="resultTotal">${statsMap.score1.resultTotal}</td>
       </tr>
       <tr>
         <td></td>
-        <td class="result__extra">${statsMap.score1.bonus1.bonus__forwhat}</td>
-        <td class="result__extra">${statsMap.score1.bonus1.result__extra}<span class="stats__result stats__result--fast"></span></td>
-        <td class="result__points">${statsMap.score1.bonus1.result__points}</td>
-        <td class="result__total">${statsMap.score1.bonus1.result__total}</td>
+        <td class="resultExtra">${statsMap.score1.bonus1.bonusForWhat}</td>
+        <td class="resultExtra">${statsMap.score1.bonus1.resultExtra}<span class="stats__result stats__result--fast"></span></td>
+        <td class="resultPoints">${statsMap.score1.bonus1.resultPoints}</td>
+        <td class="resultTotal">${statsMap.score1.bonus1.resultTotal}</td>
       </tr>
       <tr>
         <td></td>
-        <td class="result__extra">${statsMap.score1.bonus2.bonus__forwhat}</td>
-        <td class="result__extra">${statsMap.score1.bonus2.result__extra}<span class="stats__result stats__result--heart"></span></td>
-        <td class="result__points">${statsMap.score1.bonus2.result__points}</td>
-        <td class="result__total">${statsMap.score1.bonus2.result__total}</td>
+        <td class="resultExtra">${statsMap.score1.bonus2.bonusForWhat}</td>
+        <td class="resultExtra">${statsMap.score1.bonus2.resultExtra}<span class="stats__result stats__result--heart"></span></td>
+        <td class="resultPoints">${statsMap.score1.bonus2.resultPoints}</td>
+        <td class="resultTotal">${statsMap.score1.bonus2.resultTotal}</td>
       </tr>
       <tr>
         <td></td>
-        <td class="result__extra">${statsMap.score1.bonus3.bonus__forwhat}</td>
-        <td class="result__extra">${statsMap.score1.bonus3.result__extra}<span class="stats__result stats__result--slow"></span></td>
-        <td class="result__points">${statsMap.score1.bonus3.result__points}</td>
-        <td class="result__total">${statsMap.score1.bonus3.result__total}</td>
+        <td class="resultExtra">${statsMap.score1.bonus3.bonusForWhat}</td>
+        <td class="resultExtra">${statsMap.score1.bonus3.resultExtra}<span class="stats__result stats__result--slow"></span></td>
+        <td class="resultPoints">${statsMap.score1.bonus3.resultPoints}</td>
+        <td class="resultTotal">${statsMap.score1.bonus3.resultTotal}</td>
       </tr>
       <tr>
-        <td colspan="5" class="result__total  result__total--final">${statsMap.score1.finalscore}</td>
+        <td colspan="5" class="resultTotal  resultTotal--final">${statsMap.score1.finalscore}</td>
       </tr>
     </table>
     <table class="result__table">
       <tr>
-        <td class="result__number">${statsMap.score2.result__number}</td>
+        <td class="resultNumber">${statsMap.score2.resultNumber}</td>
         <td>
           <ul class="stats">
             <li class="stats__result stats__result--wrong"></li>
@@ -117,13 +114,13 @@ const stats = getElementFromTemplate(`<header class="header">
             <li class="stats__result stats__result--wrong"></li>
           </ul>
         </td>
-        <td class="result__total">${statsMap.score2.result__points}</td>
-        <td class="result__total  result__total--final">${statsMap.score2.result__total}</td>
+        <td class="resultTotal">${statsMap.score2.resultPoints}</td>
+        <td class="resultTotal  resultTotal--final">${statsMap.score2.resultTotal}</td>
       </tr>
     </table>
     <table class="result__table">
       <tr>
-        <td class="result__number">${statsMap.score3.result__number}</td>
+        <td class="resultNumber">${statsMap.score3.resultNumber}</td>
         <td colspan="2">
           <ul class="stats">
             <li class="stats__result stats__result--wrong"></li>
@@ -138,18 +135,18 @@ const stats = getElementFromTemplate(`<header class="header">
             <li class="stats__result stats__result--unknown"></li>
           </ul>
         </td>
-        <td class="result__points">${statsMap.score3.result__points}</td>
-        <td class="result__total">${statsMap.score3.result__total}</td>
+        <td class="resultPoints">${statsMap.score3.resultPoints}</td>
+        <td class="resultTotal">${statsMap.score3.resultTotal}</td>
       </tr>
       <tr>
         <td></td>
-        <td class="result__extra">${statsMap.score3.bonus1.bonus__forwhat}</td>
-        <td class="result__extra">${statsMap.score3.bonus1.result__extra}<span class="stats__result stats__result--heart"></span></td>
-        <td class="result__points">${statsMap.score3.bonus1.result__points}</td>
-        <td class="result__total">${statsMap.score3.bonus1.result__total}</td>
+        <td class="resultExtra">${statsMap.score3.bonus1.bonusForWhat}</td>
+        <td class="resultExtra">${statsMap.score3.bonus1.resultExtra}<span class="stats__result stats__result--heart"></span></td>
+        <td class="resultPoints">${statsMap.score3.bonus1.resultPoints}</td>
+        <td class="resultTotal">${statsMap.score3.bonus1.resultTotal}</td>
       </tr>
       <tr>
-        <td colspan="5" class="result__total  result__total--final">${statsMap.score3.finalscore}</td>
+        <td colspan="5" class="resultTotal  resultTotal--final">${statsMap.score3.finalscore}</td>
       </tr>
     </table>
   </div>`);

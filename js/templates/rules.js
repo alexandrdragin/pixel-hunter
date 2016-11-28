@@ -3,34 +3,31 @@ import getElementFromTemplate from '../getElementFromTemplate';
 import game1 from './game1';
 import draw from '../draw';
 
+import smallHeader from './smallHeader.js';
+
 const rulesMap = {
-  rules__title: 'Правила',
-  rules__description: {
-    part1: 'Угадай 10 раз для каждого изображения фото',
-    part2: 'или рисунок',
-    part3: '.<br> Фотографиями или рисунками могут быть оба изображения.<br> На каждую попытку отводится 30 секунд.<br> Ошибиться можно не более 3 раз.<br> <br> Готовы?'
+  rulesTitle: 'Правила',
+  rulesDescription: {
+    try: '10 раз',
+    time: '30 секунд',
+    wrong: 'не более 3х раз'
   },
-  rules__input: 'Ваше Имя',
-  rules__button: 'Go!'
+  rulesInput: 'Ваше Имя',
+  rulesButton: 'Go!'
 };
 
 const rules = getElementFromTemplate(`<header class="header">
-    <div class="header__back">
-      <span class="back">
-        <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
-        <img src="img/logo_small.png" width="101" height="44">
-      </span>
-    </div>
+  ${smallHeader}
   </header>
   <div class="rules  central--none">
-    <h1 class="rules__title">${rulesMap.rules__title}</h1>
-    <p class="rules__description"> ${rulesMap.rules__description.part1}
-      <img src="img/photo_icon.png" width="16" height="16"> ${rulesMap.rules__description.part2}
-      <img src="img/paint_icon.png" width="16" height="16" alt=""> ${rulesMap.rules__description.part3}
+    <h1 class="rules__title">${rulesMap.rulesTitle}</h1>
+    <p class="rules__description"> Угадай ${rulesMap.rulesDescription.try} для каждого изображения фото
+      <img src="img/photo_icon.png" width="16" height="16"> или рисунок
+      <img src="img/paint_icon.png" width="16" height="16" alt=""> .<br> Фотографиями или рисунками могут быть оба изображения.<br> На каждую попытку отводится ${rulesMap.rulesDescription.time}.<br> Ошибиться можно ${rulesMap.rulesDescription.wrong}.<br> <br> Готовы?
     </p>
     <form class="rules__form">
-      <input class="rules__input" type="text" placeholder="${rulesMap.rules__input}">
-      <button class="rules__button  continue" type="submit" disabled>${rulesMap.rules__button}</button>
+      <input class="rules__input" type="text" placeholder="${rulesMap.rulesInput}">
+      <button class="rules__button  continue" type="submit" disabled>${rulesMap.rulesButton}</button>
     </form>
   </div>`);
 

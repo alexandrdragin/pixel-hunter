@@ -4,13 +4,13 @@ import greeting from './greeting';
 import draw from '../draw.js';
 
 const introMap = {
-  intro__asterisk: '*',
-  intro__motto: 'Это не фото. Это рисунок маслом нидерландского художника-фотореалиста Tjalf Sparnaay.'
+  introAsterisk: '*',
+  introMotto: 'Это не фото. Это рисунок маслом нидерландского художника-фотореалиста Tjalf Sparnaay.'
 };
 
 const intro = getElementFromTemplate(`<div id="intro" class="intro">
-      <h1 class="intro__asterisk">${introMap.intro__asterisk}</h1>
-      <p class="intro__motto"><sup>*</sup>${introMap.intro__motto}</p>
+      <h1 class="intro__asterisk">${introMap.introAsterisk}</h1>
+      <p class="intro__motto"><sup>*</sup>${introMap.introMotto}</p>
     </div>
 `);
 
