@@ -6,7 +6,7 @@ const finalResult = {
   win: 'Победа!',
   lose: 'Ну так...',
   square: 'Ровно!'
-}
+};
 
 const score1 = {
   number: '1.',
