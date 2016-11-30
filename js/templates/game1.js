@@ -5,7 +5,7 @@ import draw from '../draw.js';
 
 import questsData from './questsData.js';
 
-import {fullHeader}  from './header.js';
+import {fullHeader} from './header.js';
 import statsBlock from './statsBlock.js';
 
 const gameTask = `<p class="game__task">${questsData.questionOne.questTask}</p>`;

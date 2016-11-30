@@ -3,7 +3,7 @@ import getElementFromTemplate from '../getElementFromTemplate';
 import game1 from './game1';
 import draw from '../draw';
 
-import {smallHeader} from "./header.js";
+import {smallHeader} from './header.js';
 
 const rulesMap = {
   rulesTitle: 'Правила',

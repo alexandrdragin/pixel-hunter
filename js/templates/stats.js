@@ -5,7 +5,7 @@ import {smallHeader} from './header.js';
 const statsMap = {
   win: 'Победа!',
   lose: 'Ну так...',
-  squre: 'Ровно!',
+  square: 'Ровно!',
   score1: {
     resultNumber: '1.',
     resultPoints: '×&nbsp;100',
