@@ -10,7 +10,8 @@ const questsData = {
     questTask: 'Угадайте для каждого изображения фото или рисунок?',
     questOption1: 'http://placehold.it/468x458',
     questOption2: 'http://placehold.it/468x458',
-    correctAnswer: 'questOption1'
+    correctAnswer1: 'draw',
+    correctAnswer2: 'draw'
   },
   questionTwo: {
     questTask: 'Угадай, фото или рисунок',
