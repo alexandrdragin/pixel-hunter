@@ -1,9 +1,11 @@
 import getElementFromTemplate from '../getElementFromTemplate';
 
-import smallHeader from './smallHeader.js';
+import {smallHeader} from './header.js';
 
 const statsMap = {
-  h1: 'Победа!',
+  win: 'Победа!',
+  lose: 'Ну так...',
+  squre: 'Ровно!',
   score1: {
     resultNumber: '1.',
     resultPoints: '×&nbsp;100',
@@ -49,7 +51,7 @@ const statsMap = {
 
 const result = (`
   <div class="result">
-    <h1>${statsMap.h1}</h1>
+    <h1>${statsMap.win}</h1>
     <table class="result__table">
       <tr>
         <td class="resultNumber">${statsMap.score1.resultNumber}</td>

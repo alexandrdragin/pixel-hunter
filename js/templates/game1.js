@@ -3,21 +3,17 @@ import getElementFromTemplate from '../getElementFromTemplate.js';
 import game2 from './game2.js';
 import draw from '../draw.js';
 
-import header from './header.js';
+import questsData from './questsData.js';
+
+import {fullHeader}  from './header.js';
 import statsBlock from './statsBlock.js';
 
-const game1Map = {
-  gameTask: 'Угадайте для каждого изображения фото или рисунок?',
-  gameOption1: 'http://placehold.it/468x458',
-  gameOption2: 'http://placehold.it/468x458'
-};
-
-const gameTask = `<p class="game__task">${game1Map.gameTask}</p>`;
+const gameTask = `<p class="game__task">${questsData.questionOne.questTask}</p>`;
 
 const quest = (`
   <form class="game__content">
     <div class="game__option">
-      <img src="${game1Map.gameOption1}" alt="Option 1" width="468" height="458">
+      <img src="${questsData.questionOne.questOption1}" alt="Option 1" width="468" height="458">
       <label class="game__answer game__answer--photo">
         <input name="question1" type="radio" value="photo">
         <span>Фото</span>
@@ -28,7 +24,7 @@ const quest = (`
       </label>
     </div>
     <div class="game__option">
-      <img src="${game1Map.gameOption2}" alt="Option 2" width="468" height="458">
+      <img src="${questsData.questionOne.questOption2}" alt="Option 2" width="468" height="458">
       <label class="game__answer  game__answer--photo">
         <input name="question2" type="radio" value="photo">
         <span>Фото</span>
@@ -42,11 +38,11 @@ const quest = (`
 `);
 
 const game1 = getElementFromTemplate(`
-  ${header}
+  ${fullHeader}
   <div class="game">
-  ${gameTask}
-  ${quest}
-  ${statsBlock}
+    ${gameTask}
+    ${quest}
+    ${statsBlock}
   </div>
 `);
 
