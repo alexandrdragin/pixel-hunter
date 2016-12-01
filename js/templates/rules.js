@@ -52,5 +52,5 @@ export default () => {
     draw(game1);
   };
 
-return rules;
+  return rules;
 };

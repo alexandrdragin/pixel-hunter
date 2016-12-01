@@ -49,4 +49,4 @@ export default () => {
   }
 
   return game2;
-}
+};
