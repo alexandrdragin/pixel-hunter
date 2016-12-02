@@ -10,12 +10,12 @@ import statsBlock from './statsBlock.js';
 
 export default () => {
 
-  const gameTask = `<p class="game__task">${questsData.questionOne.questTask}</p>`;
+  const gameTask = `<p class="game__task">${questsData.question1.questTask}</p>`;
 
   const quest = (`
     <form class="game__content">
       <div class="game__option">
-        <img src="${questsData.questionOne.questOption1}" alt="Option 1" width="468" height="458">
+        <img src="${questsData.question1.questOption1}" alt="Option 1" width="468" height="458">
         <label class="game__answer game__answer--photo">
           <input name="question1" type="radio" value="photo">
           <span>Фото</span>
@@ -26,7 +26,7 @@ export default () => {
         </label>
       </div>
       <div class="game__option">
-        <img src="${questsData.questionOne.questOption2}" alt="Option 2" width="468" height="458">
+        <img src="${questsData.question1.questOption2}" alt="Option 2" width="468" height="458">
         <label class="game__answer  game__answer--photo">
           <input name="question2" type="radio" value="photo">
           <span>Фото</span>
