@@ -6,6 +6,8 @@ import statsBlock from './statsBlock.js';
 
 import {fillQuestionTypeEach, fillQuestionTypedrawOrPhoto, fillQuestionTypefindOne} from './fillQuestion.js';
 
+import startGame from './startGame';
+
 
 // в зависимости от типа вопроса погдрузка нужного шаблона
 // заполнение его данными
@@ -48,7 +50,7 @@ export default (typeOfQuestion, question) => {
 
   const handler = (e) => {
     e.preventDefault();
-    draw(gameScreen());
+    draw(startGame);
   };
 
   for (const answer of answers) {

@@ -1,5 +1,4 @@
 import questsData from './questsData.js';
-import draw from '../draw.js';
 
 import stats from './stats';
 
@@ -10,6 +9,8 @@ import gameScreen from './gameScreen.js';
 // если нет статистику
 
 export default () => {
+
+  let temp = null;
 
   if (questsData['question' + questsData.base.currentLevel]) {
 
@@ -26,18 +27,19 @@ export default () => {
     // исправил на это > получил
     // 'appendChild' on 'Node': parameter 1 is not of type 'Node'.(…)
 
-    const node = () => {
-      gameScreen(
-          questsData['question' + questsData.base.currentLevel].type,
-          questsData['question' + questsData.base.currentLevel]
+    const node = gameScreen(
+        questsData['question' + questsData.base.currentLevel].type,
+        questsData['question' + questsData.base.currentLevel]
       );
-    };
 
-    draw(node);
+
+    temp = node;
     questsData.base.currentLevel++;
 
   } else {
-    draw(stats);
+    temp = stats();
   }
 
+  console.log(temp);
+  return temp;
 };
