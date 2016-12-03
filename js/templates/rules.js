@@ -1,6 +1,6 @@
 import getElementFromTemplate from '../getElementFromTemplate';
 
-import game1 from './game1';
+import startGame from './startGame';
 import draw from '../draw';
 
 import {smallHeader} from './header.js';
@@ -49,7 +49,7 @@ export default () => {
 
   rulesSubmit.onclick = (e) => {
     e.preventDefault();
-    draw(game1);
+    draw(startGame);
   };
 
   return rules;

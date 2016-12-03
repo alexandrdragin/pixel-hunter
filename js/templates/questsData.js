@@ -8,6 +8,7 @@ const questsData = {
   },
 
   question1: {
+    type: 'each',
     questTask: 'Угадайте для каждого изображения фото или рисунок?',
     questOption1: 'http://placehold.it/468x458',
     questOption2: 'http://placehold.it/468x458',
@@ -15,11 +16,13 @@ const questsData = {
     correctAnswer2: 'draw'
   },
   question2: {
+    type: 'drawOrPhoto',
     questTask: 'Угадай, фото или рисунок',
     questOption1: 'http://placehold.it/705x455',
     correctAnswer: 'draw'
   },
   question3: {
+    type: 'findOne',
     questTask: 'Найдите рисунок среди изображений',
     questOption1: 'http://placehold.it/304x455',
     questOption2: 'http://placehold.it/304x455',
