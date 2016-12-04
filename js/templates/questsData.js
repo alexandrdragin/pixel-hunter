@@ -51,6 +51,26 @@ const questsData = {
     correctAnswer1: 'draw',
     correctAnswer2: 'draw'
   },
+  question7: {
+    type: 'drawOrPhoto',
+    questTask: 'Угадай, фото или рисунок',
+    questOption1: 'http://placehold.it/705x455',
+    correctAnswer: 'draw'
+  },
+  question8: {
+    type: 'findOne',
+    questTask: 'Найдите рисунок среди изображений',
+    questOption1: 'http://placehold.it/304x455',
+    questOption2: 'http://placehold.it/304x455',
+    questOption3: 'http://placehold.it/304x455',
+    correctAnswer: 'questOption1'
+  },
+  question9: {
+    type: 'drawOrPhoto',
+    questTask: 'Угадай, фото или рисунок',
+    questOption1: 'http://placehold.it/705x455',
+    correctAnswer: 'draw'
+  },
 };
 
 export default questsData;

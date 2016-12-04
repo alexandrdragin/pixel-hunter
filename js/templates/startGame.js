@@ -40,6 +40,5 @@ export default () => {
     temp = stats();
   }
 
-  console.log(temp);
   return temp;
 };

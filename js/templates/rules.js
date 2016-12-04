@@ -52,6 +52,5 @@ export default () => {
     draw(startGame);
   };
 
-  console.log(rules);
   return rules;
 };
