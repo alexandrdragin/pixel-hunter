@@ -17,7 +17,7 @@ export default (typeOfQuestion, question) => {
 
   let questBlock = [];
 
-// блок проверяющий тип вопроса из questsData.question1.type
+// блок проверяющий тип вопроса из questsData.question[].type
 
   switch (typeOfQuestion) {
     case 'each':
@@ -50,7 +50,7 @@ export default (typeOfQuestion, question) => {
 
   const handler = (e) => {
     e.preventDefault();
-    draw(startGame);
+    draw(startGame());
   };
 
   for (const answer of answers) {

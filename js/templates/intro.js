@@ -13,7 +13,7 @@ export default () => {
 
   const introAsterisk = intro.querySelector('.intro__asterisk');
 
-  const handler = (e) => draw(greeting);
+  const handler = (e) => draw(greeting());
   introAsterisk.addEventListener('click', handler);
 
   return intro;

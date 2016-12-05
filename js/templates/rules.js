@@ -49,7 +49,7 @@ export default () => {
 
   rulesSubmit.onclick = (e) => {
     e.preventDefault();
-    draw(startGame);
+    draw(startGame());
   };
 
   return rules;

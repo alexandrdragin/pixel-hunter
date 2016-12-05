@@ -1,46 +1,31 @@
 // три функци заполняющие разметку под принятые данные
 
-let task = null;
-let questOption1 = null;
-let questOption2 = null;
-let questOption3 = null;
+const questionsCreate = (src, num, cls = '', size = 'width="468" height="458"') => {
+  let questionsMarkDown = (`<div class="game__option">
+    <img src="${src}" alt="Option ${num}" ${size}>
+    <label class="game__answer game__answer--photo">
+      <input name="question${num}" type="radio" value="photo">
+      <span>Фото</span>
+    </label>
+    <label class="game__answer game__answer--paint ${cls}">
+      <input name="question${num}" type="radio" value="paint">
+      <span>Рисунок</span>
+    </label>
+  </div>`
+);
+
+  return questionsMarkDown;
+};
 
 const fillQuestionTypeEach = (question) => {
 
-  // вот здесь должна быть деконструкция questsData.question
-  // и разбивка на параметры task, questOption1, questOption2
-  // пожалуйста подскажи более изящное решение
+  let {questTask: task, questOption1: questOption1, questOption2: questOption2} = question;
 
-  task = question.questTask;
-  questOption1 = question.questOption1;
-  questOption2 = question.questOption2;
-
-  let markDown = (`
-    <p class="game__task">${task}</p>
+  let markDown = (`<p class="game__task">${task}</p>
 
     <form class="game__content">
-      <div class="game__option">
-        <img src="${questOption1}" alt="Option 1" width="468" height="458">
-        <label class="game__answer game__answer--photo">
-          <input name="question1" type="radio" value="photo">
-          <span>Фото</span>
-        </label>
-        <label class="game__answer game__answer--paint">
-          <input name="question1" type="radio" value="paint">
-          <span>Рисунок</span>
-        </label>
-      </div>
-      <div class="game__option">
-        <img src="${questOption2}" alt="Option 2" width="468" height="458">
-        <label class="game__answer  game__answer--photo">
-          <input name="question2" type="radio" value="photo">
-          <span>Фото</span>
-        </label>
-        <label class="game__answer  game__answer--paint">
-          <input name="question2" type="radio" value="paint">
-          <span>Рисунок</span>
-        </label>
-      </div>
+      ${questionsCreate(questOption1, 1)}
+      ${questionsCreate(questOption2, 2)}
     </form>
   `);
 
@@ -49,22 +34,13 @@ const fillQuestionTypeEach = (question) => {
 
 const fillQuestionTypedrawOrPhoto = (question) => {
 
-  task = question.questTask;
-  questOption1 = question.questOption1;
+  let {questTask: task, questOption1: questOption1} = question;
 
   let markDown = (`<p class="game__task">${task}</p>
 
   <form class="game__content  game__content--wide">
     <div class="game__option">
-      <img src="${questOption1}" alt="Option 1" width="705" height="455">
-      <label class="game__answer  game__answer--photo">
-        <input name="question1" type="radio" value="photo">
-        <span>Фото</span>
-      </label>
-      <label class="game__answer  game__answer--wide  game__answer--paint">
-        <input name="question1" type="radio" value="paint">
-        <span>Рисунок</span>
-      </label>
+      ${questionsCreate(questOption1, 1, 'game__answer--wide', 'width="705" height="455"')}
     </div>
   </form>
   `);
@@ -74,10 +50,7 @@ const fillQuestionTypedrawOrPhoto = (question) => {
 
 const fillQuestionTypefindOne = (question) => {
 
-  task = question.questTask;
-  questOption1 = question.questOption1;
-  questOption2 = question.questOption2;
-  questOption3 = question.questOption3;
+  let {questTask: task, questOption1: questOption1, questOption2: questOption2, questOption3: questOption3} = question;
 
   let markDown = (`<p class="game__task">${task}</p>
 
