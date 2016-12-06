@@ -1,3 +1,5 @@
+// готово
+
 import assert from 'assert';
 
 describe('Array', function () {
