@@ -1,7 +1,7 @@
 // готово
 
 import assert from 'assert';
-import {gameData} from './questData';
+import {gameData} from './questsData';
 
 describe('Array', function () {
   describe('#indexOf()', function () {

@@ -1,8 +1,17 @@
 const questsData = {
   base: {
     currentLevel: 0,
-    timer: 'NN',
-    lives: '2'
+    timer: 30,
+    lives: 3
+  },
+
+// для подсчета очков
+  player: {
+    rightAnswers: 0,
+    wrongAnswers: 0,
+    fast: 0,
+    slow: 0,
+    result: ''
   },
 
   questions: [
