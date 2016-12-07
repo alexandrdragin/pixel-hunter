@@ -1,4 +1,5 @@
 import questsData from './questsData.js';
+import lives from './lives.js';
 
 const backHeader = `<div class="header__back">
     <span class="back">
@@ -9,9 +10,7 @@ const backHeader = `<div class="header__back">
 
 const gameHeader = `<h1 class="game__timer">${questsData.base.timer}</h1>
 <div class="game__lives">
-  <img src="img/heart__empty.svg" class="game__heart" alt="Life" width="32" height="32">
-  <img src="img/heart__full.svg" class="game__heart" alt="Life" width="32" height="32">
-  <img src="img/heart__full.svg" class="game__heart" alt="Life" width="32" height="32">
+  ${lives(questsData)}
 </div>`;
 
 const smallHeader = `
