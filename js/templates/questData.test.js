@@ -1,7 +1,7 @@
 // готово
 
 import assert from 'assert';
-import {gameData} from './questsData';
+import gameData from './questsData';
 
 describe('Array', function () {
   describe('#indexOf()', function () {
@@ -11,7 +11,7 @@ describe('Array', function () {
   });
 });
 
-import {setLives, setTime, setPoints, setFinalResult} from './set';
+import {setLives, setTime, setPoints, setFinalResult, addAnswer} from './set';
 import startGame from './startGame';
 
 describe('Game', function () {
@@ -27,6 +27,16 @@ describe('Game', function () {
     describe('Returns', () => {
       it('getLevel() should return an {Object}', () => {
         assert.ok(typeof startGame(1) === 'object');
+      });
+    });
+  });
+  describe('Getting level', () => {
+    describe('Returns', () => {
+      it('If I add answer Ill go to the next level', () => {
+        let currentLevel = gameData.base.currentLevel;
+        assert.equal(addAnswer(gameData, 'wrong').player.wrongAnswers, 1);
+        assert(gameData.questsData.questions[currentLevel]);
+        assert(gameData.base.currentLevel > currentLevel);
       });
     });
   });
