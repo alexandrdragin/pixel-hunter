@@ -1,14 +1,14 @@
 
-function timer(seconds, tick, end) {
+const timer = (seconds, tick, end) => {
   if (seconds > 0) {
     tick(seconds);
     seconds -= 1;
-    setTimeout(function () {
+    setInterval(function () {
       timer(seconds, tick, end);
     }, 1000);
   } else {
     end();
   }
-}
+};
 
 export default timer;

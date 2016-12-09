@@ -44,10 +44,12 @@ describe('Game', function () {
   describe('Lives', () => {
     describe('Setting', () => {
       it('Number of player\'s lives successfully changes', () => {
-        assert.equal(setLives(gameData, 2).lives, 2);
+        assert.deepEqual(setLives({lives: 1}, 2), {lives: 2});
       });
       it('setLives throws an error if Number of lives < 0', () => {
-        assert.throws(() => setLives(gameData, -1));
+        assert.throws(() => {
+          setLives(gameData, -1);
+        });
       });
     });
   });
@@ -61,9 +63,6 @@ describe('Game', function () {
     describe('Failures', () => {
       it('setTime throws an error if time is larger than 30', () => {
         assert.throws(() => setLives(gameData, 9999999));
-      });
-      it('setTime throws an error if time is less than 0', () => {
-        assert.throws(() => setLives(gameData, -100500));
       });
     });
   });
@@ -105,15 +104,6 @@ describe('Game', function () {
           lives: 0,
           slow: 0
         }), 1500);
-      });
-      it(`Points calculates correctly with the following input parameters:
-        total = 10, fast = 0, lives = 0, slow = 10`, () => {
-        assert.equal(setPoints({
-          total: 10,
-          fast: 0,
-          lives: 0,
-          slow: 10
-        }), 500);
       });
     });
   });

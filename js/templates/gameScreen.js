@@ -10,7 +10,7 @@ import {fillQuestionTypeEach, fillQuestionTypedrawOrPhoto, fillQuestionTypefindO
 
 import startGame from './startGame';
 
-
+import {setTime} from './set.js';
 import timer from './timer';
 
 // в зависимости от типа вопроса погдрузка нужного шаблона
@@ -45,14 +45,12 @@ export default (typeOfQuestion, question) => {
     </div>
   `);
 
+  clearInterval(timer);
+
   timer(30, function (s) {
-    questsData.base.time = s;
-    // renderHeader()?
+    setTime(questsData, s);
   }, function (s) {
-    // throw new Error('timeout > nextlevel');
-    draw(startGame());
-    questsData.base.life--;
-    questsData.player.wrongAnswers++;
+    throw new Error('timeout, life--, wrongAnswers++ > nextlevel');
   });
 
 // bindhandlers
