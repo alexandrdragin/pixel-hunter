@@ -1,4 +1,5 @@
-import getElementFromTemplate from '../getElementFromTemplate';
+import abstractView from '../abstract-view';
+
 import draw from '../draw.js';
 
 import questsData from './questsData.js';
@@ -19,55 +20,72 @@ import timer from './timer';
 
 export default (typeOfQuestion, question) => {
 
-  let questBlock = [];
+  class StartGame extends abstractView {
+    constructor(data) {
+      super();
+      this.data = data;
 
-// блок проверяющий тип вопроса из questsData.question[].type
+      this.questBlock = [];
 
-  switch (typeOfQuestion) {
-    case 'each':
-      questBlock = fillQuestionTypeEach(question);
-      break;
-    case 'drawOrPhoto':
-      questBlock = fillQuestionTypedrawOrPhoto(question);
-      break;
-    case 'findOne':
-      questBlock = fillQuestionTypefindOne(question);
-      break;
-    default:
-      throw new Error('sorry, wierd question');
+      this.answer = null;
+
+      switch (typeOfQuestion) {
+        case 'each':
+          this.questBlock = fillQuestionTypeEach(question);
+          break;
+        case 'drawOrPhoto':
+          this.questBlock = fillQuestionTypedrawOrPhoto(question);
+          break;
+        case 'findOne':
+          this.questBlock = fillQuestionTypefindOne(question);
+          break;
+        default:
+          throw new Error('sorry, wierd question');
+      }
+
+      clearInterval(timer);
+
+      timer(30, function (s) {
+        setTime(questsData, s);
+      }, function (s) {
+        throw new Error('timeout, life--, wrongAnswers++ > nextlevel');
+      });
+    }
+
+    getMarkup() {
+      return `
+      ${fullHeader}
+      <div class="game">
+        ${this.questBlock}
+        ${statsBlock}
+      </div>
+      `;
+    }
+
+    bindHandlers() {
+      let answers = this.element.querySelectorAll('.game__answer');
+
+      if (answers.length === 0) {
+        answers = this.element.querySelectorAll('.game__option');
+      }
+
+      for (const answer of answers) {
+        answer.addEventListener('click', this.onClick);
+      }
+    }
+
+    clearHandlers() {
+      this.answer.removeEventListener('click', this.onClick);
+    }
+
+
+    onClick(evt) {
+      evt.preventDefault();
+      draw(startGame());
+    }
+
   }
 
-  const gameScreen = getElementFromTemplate(`
-    ${fullHeader}
-    <div class="game">
-      ${questBlock}
-      ${statsBlock}
-    </div>
-  `);
+  return new StartGame().element;
 
-  clearInterval(timer);
-
-  timer(30, function (s) {
-    setTime(questsData, s);
-  }, function (s) {
-    throw new Error('timeout, life--, wrongAnswers++ > nextlevel');
-  });
-
-// bindhandlers
-  let answers = gameScreen.querySelectorAll('.game__option');
-
-  if (answers === 'undefined') {
-    answers = gameScreen.querySelectorAll('.game__answer');
-  }
-
-  const handler = (e) => {
-    e.preventDefault();
-    draw(startGame());
-  };
-
-  for (const answer of answers) {
-    answer.onclick = handler;
-  }
-
-  return gameScreen;
 };
