@@ -31,3 +31,14 @@ export const getPoints = (points) => {
 export const addAnswer = (answer) => {
   questsData.player.push({answer: answer});
 };
+
+export const checkAnswerSpeed = (time) => {
+  if (time < 10) {
+    return questsData.player.slow++;
+  }
+  if (time > 20) {
+    return questsData.player.fast++;
+  } else {
+    return 'regular time';
+  }
+};
