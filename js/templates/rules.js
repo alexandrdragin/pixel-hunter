@@ -87,7 +87,10 @@ export default () => {
     //  evt.preventDefault();
     //  draw(WHAT);
     // }
- }
 
+    focus() {
+      this.element.querySelector('.rules__input').focus();
+    }
+ }
   return new Rules().element;
 };
