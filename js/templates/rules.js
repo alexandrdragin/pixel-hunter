@@ -1,14 +1,14 @@
-import abstractView from '../abstract-view';
+import AbstractView from '../abstract-view';
 
 import greeting from './greeting';
 import startGame from './startGame';
 import draw from '../draw';
 
-import {smallHeader} from './header.js';
+import Header from './header.js';
 
 export default () => {
 
-  class Rules extends abstractView {
+  class Rules extends AbstractView {
     constructor(data) {
       super();
       this.data = data;
@@ -42,7 +42,7 @@ export default () => {
         </div>`);
 
       return `
-        ${smallHeader}
+        ${new Header().smallHeader()}
         ${rulesBlock}
       `;
     }

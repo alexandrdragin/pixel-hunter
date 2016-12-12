@@ -1,10 +1,10 @@
-import abstractView from '../abstract-view';
+import AbstractView from '../abstract-view';
 
 import {smallHeader} from './header.js';
 
 export default () => {
 
-  class Stats extends abstractView {
+  class Stats extends AbstractView {
     constructor(data) {
       super();
       this.data = data;

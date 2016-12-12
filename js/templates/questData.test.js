@@ -1,5 +1,3 @@
-// готово
-
 import assert from 'assert';
 import gameData from './questsData';
 

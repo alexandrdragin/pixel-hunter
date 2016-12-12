@@ -1,11 +1,11 @@
-import abstractView from '../abstract-view';
+import AbstractView from '../abstract-view';
 
 import greeting from './greeting';
 import draw from '../draw.js';
 
 export default () => {
 
-  class Intro extends abstractView {
+  class Intro extends AbstractView {
     constructor(data) {
       super();
       this.data = data;

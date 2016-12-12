@@ -1,11 +1,11 @@
-import abstractView from '../abstract-view';
+import AbstractView from '../abstract-view';
 
 import rules from './rules';
 import draw from '../draw';
 
 export default () => {
 
-  class Greeting extends abstractView {
+  class Greeting extends AbstractView {
     constructor(data) {
       super();
       this.data = data;

@@ -1,10 +1,10 @@
-import abstractView from '../abstract-view';
+import AbstractView from '../abstract-view';
 
 import draw from '../draw.js';
 
 import questsData from './questsData.js';
 
-import {fullHeader} from './header.js';
+import Header from './header.js';
 import statsBlock from './statsBlock.js';
 
 import {fillQuestionTypeEach, fillQuestionTypedrawOrPhoto, fillQuestionTypefindOne} from './fillQuestion.js';
@@ -20,7 +20,7 @@ import timer from './timer';
 
 export default (typeOfQuestion, question) => {
 
-  class StartGame extends abstractView {
+  class StartGame extends AbstractView {
     constructor(data) {
       super();
       this.data = data;
@@ -54,7 +54,7 @@ export default (typeOfQuestion, question) => {
 
     getMarkup() {
       return `
-      ${fullHeader}
+      ${new Header().element()}
       <div class="game">
         ${this.questBlock}
         ${statsBlock}
