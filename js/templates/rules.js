@@ -13,6 +13,8 @@ export default () => {
       super();
       this.data = data;
       this.rulesSubmit = this.element.querySelector('.rules__button');
+
+      this.header = new Header();
     }
 
     getMarkup() {
@@ -42,7 +44,7 @@ export default () => {
         </div>`);
 
       return `
-        ${new Header().smallHeader()}
+        ${this.header.smallHeader()}
         ${rulesBlock}
       `;
     }
