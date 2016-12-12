@@ -1,9 +1,29 @@
 import questsData from './questsData';
 
 export const setTime = (game, time) => {
+
+  if (time > 30) {
+    throw new RangeError('wtf');
+  }
+
   return Object.assign({}, game, {
     time: time
   });
+};
+
+export const getLevel = (game, level) => {
+  return Object.assign({}, game, {
+    level: level
+  });
+};
+
+export const setFinalResult = (result) => {
+
+  if (result === null) {
+    throw new RangeError('wtf');
+  }
+
+  return result;
 };
 
 export const setLives = (game, lives) => {
@@ -23,13 +43,15 @@ export const setCurrentLevel = (game, level) => {
   });
 };
 
-export const getPoints = (points) => {
-  return points.rightAnswers * 100 + points.fast * 50 + points.lives * 50
-  - points.slow * 50;
+export const getPoints = (rightAnswers, fast, lives, slow) => {
+  return rightAnswers * 100 + fast * 50 + lives * 50
+  - slow * 50;
 };
 
-export const addAnswer = (answer) => {
-  questsData.player.push({answer: answer});
+export const addAnswer = (gameData, answer) => {
+  gameData.base.currentLevel++;
+
+  return answer;
 };
 
 export const checkAnswerSpeed = (time) => {

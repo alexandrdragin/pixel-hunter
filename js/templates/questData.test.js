@@ -11,22 +11,25 @@ describe('Array', function () {
   });
 });
 
-import {setLives, setTime, setPoints, setFinalResult, addAnswer} from './set';
-import startGame from './startGame';
+import {setLives,
+   setTime,
+    getPoints,
+     setFinalResult,
+      addAnswer, setCurrentLevel, getLevel} from './set';
 
 describe('Game', function () {
 
   describe('Setting level', () => {
     describe('Returns', () => {
       it('setCurrentLevel() should return an {Object}', () => {
-        assert.ok(typeof startGame(gameData, 1) === 'object');
+        assert.ok(typeof setCurrentLevel(gameData, 1) === 'object');
       });
     });
   });
   describe('Getting level', () => {
     describe('Returns', () => {
       it('getLevel() should return an {Object}', () => {
-        assert.ok(typeof startGame(1) === 'object');
+        assert.ok(typeof getLevel(1) === 'object');
       });
     });
   });
@@ -34,9 +37,8 @@ describe('Game', function () {
     describe('Returns', () => {
       it('If I add answer Ill go to the next level', () => {
         let currentLevel = gameData.base.currentLevel;
-        assert.equal(addAnswer(gameData, 'wrong').player.wrongAnswers, 1);
-        assert(gameData.questsData.questions[currentLevel]);
-        assert(gameData.base.currentLevel > currentLevel);
+        assert.equal(addAnswer(gameData, 'wrong'), 'wrong');
+        assert.ok(gameData.base.currentLevel > currentLevel);
       });
     });
   });
@@ -62,7 +64,7 @@ describe('Game', function () {
     });
     describe('Failures', () => {
       it('setTime throws an error if time is larger than 30', () => {
-        assert.throws(() => setLives(gameData, 9999999));
+        assert.throws(() => setTime(gameData, 9999999));
       });
     });
   });
@@ -71,39 +73,19 @@ describe('Game', function () {
     describe('Calculating', () => {
       it(`Points calculates correctly with the following input parameters:
         total = 0, fast = 0, lives = 0, slow = 0`, () => {
-        assert.equal(setPoints({
-          total: 0,
-          fast: 0,
-          lives: 0,
-          slow: 0
-        }), 0);
+        assert.equal(getPoints(0, 0, 0, 0), 0);
       });
       it(`Points calculates correctly with the following input parameters:
         total = 9, fast = 1, lives = 2, slow = 2`, () => {
-        assert.equal(setPoints({
-          total: 9,
-          fast: 1,
-          lives: 2,
-          slow: 2
-        }), 950);
+        assert.equal(getPoints(9, 1, 2, 2), 950);
       });
       it(`Points calculates correctly with the following input parameters:
         total = 9, fast = 0, lives = 2, slow = 0`, () => {
-        assert.equal(setPoints({
-          total: 9,
-          fast: 0,
-          lives: 2,
-          slow: 0
-        }), 1000);
+        assert.equal(getPoints(9, 0, 2, 0), 1000);
       });
       it(`Points calculates correctly with the following input parameters:
         total = 10, fast = 10, lives = 0, slow = 0`, () => {
-        assert.equal(setPoints({
-          total: 10,
-          fast: 10,
-          lives: 0,
-          slow: 0
-        }), 1500);
+        assert.equal(getPoints(10, 10, 0, 0), 1500);
       });
     });
   });
