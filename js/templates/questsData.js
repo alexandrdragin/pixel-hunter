@@ -5,7 +5,7 @@ const questsData = {
     lives: 3
   },
 
-  answer: {},
+  answer: [],
 
 // для подсчета очков
   player: {

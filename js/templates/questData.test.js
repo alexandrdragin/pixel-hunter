@@ -1,15 +1,5 @@
-// готово
-
 import assert from 'assert';
 import gameData from './questsData';
-
-describe('Array', function () {
-  describe('#indexOf()', function () {
-    it('should return -1 when the value is not present', function () {
-      assert.equal(-1, [1, 2, 3].indexOf(4));
-    });
-  });
-});
 
 import {setLives,
    setTime,
@@ -19,26 +9,18 @@ import {setLives,
 
 describe('Game', function () {
 
-  describe('Setting level', () => {
+  describe('Getting level', () => {
     describe('Returns', () => {
       it('setCurrentLevel() should return an {Object}', () => {
         assert.ok(typeof setCurrentLevel(gameData, 1) === 'object');
       });
-    });
-  });
-  describe('Getting level', () => {
-    describe('Returns', () => {
+
       it('getLevel() should return an {Object}', () => {
         assert.ok(typeof getLevel(1) === 'object');
       });
-    });
-  });
-  describe('Getting level', () => {
-    describe('Returns', () => {
+
       it('If I add answer Ill go to the next level', () => {
-        let currentLevel = gameData.base.currentLevel;
-        assert.equal(addAnswer(gameData, 'wrong'), 'wrong');
-        assert.ok(gameData.base.currentLevel > currentLevel);
+        assert.deepEqual(addAnswer(0, 1, 2), {answer: 1, level: 2});
       });
     });
   });
@@ -93,7 +75,7 @@ describe('Game', function () {
   describe('Game result', () => {
     describe('Setting', () => {
       it('Game result successfully find', () => {
-        assert.equal(setFinalResult('win'), 'win');
+        assert.deepEqual(setFinalResult('win'), {result: 'win'} );
       });
     });
     describe('Failures', () => {
