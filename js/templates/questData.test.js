@@ -12,10 +12,9 @@ describe('Game', function () {
   describe('Getting level', () => {
     describe('Returns', () => {
       it('setCurrentLevel() should return an {Object}', () => {
-        assert.ok(typeof setCurrentLevel(gameData, 1) === 'object');
+        assert.ok(typeof setCurrentLevel(gameData, 3) === 'object');
       });
 
-      // вопрос
       it('setCurrentLevel() should return an number', () => {
         const newData = setCurrentLevel(gameData, 1);
 
@@ -23,13 +22,15 @@ describe('Game', function () {
         assert.notDeepEqual(gameData, newData);
       });
 
-        // вопрос
       it('getLevel() should return an {Object}', () => {
         assert.ok(typeof getLevel(gameData, 1) === 'object');
       });
 
       it('If I add answer Ill go to the next level', () => {
-        assert.deepEqual(addAnswer(0, 1, 2), {answer: 1, level: 2});
+        let copyCat = gameData.answer;
+
+        assert.notEqual(addAnswer(gameData, 1), copyCat);
+        assert.deepEqual(addAnswer(gameData, '1, 2'), ['1, 2']);
       });
     });
   });
@@ -37,7 +38,7 @@ describe('Game', function () {
   describe('Lives', () => {
     describe('Setting', () => {
       it('Number of player\'s lives successfully changes', () => {
-        assert.deepEqual(setLives({lives: 1}, 2), {lives: 2});
+        assert.deepEqual(setLives({lives: 1}, 2), {lives: 1, base: {lives: 2}});
       });
       it('setLives throws an error if Number of lives < 0', () => {
         assert.throws(() => {
@@ -50,7 +51,7 @@ describe('Game', function () {
   describe('Time', () => {
     describe('Setting', () => {
       it('Number of time successfully changes', () => {
-        assert.equal(setTime(gameData, 15).time, 15);
+        assert.equal(setTime(gameData, 15).base.time, 15);
       });
     });
     describe('Failures', () => {
@@ -84,7 +85,7 @@ describe('Game', function () {
   describe('Game result', () => {
     describe('Setting', () => {
       it('Game result successfully find', () => {
-        assert.deepEqual(setFinalResult('win'), {result: 'win'} );
+        assert.deepEqual(setFinalResult('win'), {player: {result: 'win'}});
       });
     });
     describe('Failures', () => {

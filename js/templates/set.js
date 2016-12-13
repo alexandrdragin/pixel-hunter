@@ -7,19 +7,19 @@ export const setTime = (game, time) => {
   }
 
   return Object.assign({}, game, {
-    time: time
+    base: {time: time}
   });
 };
 
 export const hasLevel = (currentLevel) =>
-  typeof gameData.questions['${currentLevel}'] !== 'undefined';
+  typeof gameData.questions[`${currentLevel}`] !== 'undefined';
 
 export const getLevel = (game, currentLevel) => {
   if (!hasLevel(currentLevel)) {
     throw new RangeError(`This game has no level ${currentLevel}`);
   }
 
-  return gameData.questions['${currentLevel}'];
+  return game.questions[`${currentLevel}`];
 };
 
 export const setFinalResult = (result) => {
@@ -29,7 +29,7 @@ export const setFinalResult = (result) => {
   }
 
   return Object.assign({}, {
-    result: result
+    player: {result: result}
   });
 };
 
@@ -40,13 +40,13 @@ export const setLives = (game, lives) => {
   }
 
   return Object.assign({}, game, {
-    lives: lives
+    base: {lives: lives}
   });
 };
 
-export const setCurrentLevel = (game, level) => {
+export const setCurrentLevel = (game, currentLevel) => {
   return Object.assign({}, game, {
-    level: level
+    base: {currentLevel: currentLevel}
   });
 };
 
@@ -55,30 +55,26 @@ export const getPoints = (rightAnswers, fast, lives, slow) => {
   - slow * 50;
 };
 
-export const addAnswer = (data, answer, level) => {
-  return Object.assign({}, data, {
-    answer: answer,
-    level: level
-  });
+export const addAnswer = (data, answer) => {
+  let copyCat = data.answer.slice(0, data.answer.length);
+  copyCat.push(answer);
 
-  // export const addAnswer = (answer) => {
-  //  questsData.player.push({answer: answer});
-  // };
+  return copyCat;
 
+// TypeError: Object.assing is not a function
+
+//  return Object.assing({}, data, {
+//    answer: copyCat
+//  });
 };
+
 
 export const checkAnswerSpeed = (data, time, answer) => {
   if (time < 10) {
-
-    return Object.assign({}, data, {
-      answer: answer
-    });
+    return addAnswer(data, answer + 'slow');
   }
   if (time > 20) {
-
-    return Object.assign({}, data, {
-      answer: answer
-    });
+    return addAnswer(data, answer + 'fast');
   } else {
     return 'regular time';
   }
