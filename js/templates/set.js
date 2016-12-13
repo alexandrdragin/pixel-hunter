@@ -1,3 +1,5 @@
+import gameData from './questsData';
+
 export const setTime = (game, time) => {
 
   if (time > 30) {
@@ -9,10 +11,15 @@ export const setTime = (game, time) => {
   });
 };
 
+export const hasLevel = (currentLevel) =>
+  typeof gameData.questions['${currentLevel}'] !== 'undefined';
+
 export const getLevel = (game, currentLevel) => {
-  return Object.assign({}, game, {
-    currentLevel: currentLevel
-  });
+  if (!hasLevel(currentLevel)) {
+    throw new RangeError(`This game has no level ${currentLevel}`);
+  }
+
+  return gameData.questions['${currentLevel}'];
 };
 
 export const setFinalResult = (result) => {
@@ -48,23 +55,28 @@ export const getPoints = (rightAnswers, fast, lives, slow) => {
   - slow * 50;
 };
 
-export const addAnswer = (gameData, answer, level) => {
-  return Object.assign({}, gameData, {
+export const addAnswer = (data, answer, level) => {
+  return Object.assign({}, data, {
     answer: answer,
     level: level
   });
+
+  // export const addAnswer = (answer) => {
+  //  questsData.player.push({answer: answer});
+  // };
+
 };
 
-export const checkAnswerSpeed = (gameData, time, answer) => {
+export const checkAnswerSpeed = (data, time, answer) => {
   if (time < 10) {
 
-    return Object.assign({}, gameData, {
+    return Object.assign({}, data, {
       answer: answer
     });
   }
   if (time > 20) {
 
-    return Object.assign({}, gameData, {
+    return Object.assign({}, data, {
       answer: answer
     });
   } else {

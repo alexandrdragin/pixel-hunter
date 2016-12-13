@@ -15,8 +15,17 @@ describe('Game', function () {
         assert.ok(typeof setCurrentLevel(gameData, 1) === 'object');
       });
 
+      // вопрос
+      it('setCurrentLevel() should return an number', () => {
+        const newData = setCurrentLevel(gameData, 1);
+
+        assert.equal(newData.base.currentLevel, 1);
+        assert.notDeepEqual(gameData, newData);
+      });
+
+        // вопрос
       it('getLevel() should return an {Object}', () => {
-        assert.ok(typeof getLevel(1) === 'object');
+        assert.ok(typeof getLevel(gameData, 1) === 'object');
       });
 
       it('If I add answer Ill go to the next level', () => {
