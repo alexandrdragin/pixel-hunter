@@ -173,8 +173,6 @@ export default () => {
       `);
     }
 
-    // так можно????
-
     getMarkup() {
       return `
         ${smallHeader}

@@ -2,9 +2,10 @@ import AbstractView from '../abstract-view';
 
 import greeting from './greeting';
 import startGame from './startGame';
+
 import draw from '../draw';
 
-import Header from './header.js';
+import Header from './header';
 
 export default () => {
 
@@ -44,28 +45,21 @@ export default () => {
         </div>`);
 
       return `
-        ${this.header.smallHeader()}
+        ${this.header.smallHeader}
         ${rulesBlock}
       `;
     }
 
     bindHandlers() {
-      // ???
       this.rulesSubmit = this.element.querySelector('.rules__button');
-      this.rulesSubmit.addEventListener('click', this.onClick);
+      this.rulesSubmit.addEventListener('click', (evt) => {
+        evt.preventDefault();
+        draw(startGame());
+      });
 
-      // this.rulesSubmit.addEventListener('click', this.onClick(startGame()));
-
-      // rulesSubmit.addEventListener('click', {
-      //  e.preventDefault();
-      //  draw(startGame());
-      // };
-
-      //  const handler = (WHAT) => draw(WHAT);
-      //  this.element.querySelector('.header__back').addEventListener('click', handler(greeting()));
-
-      const handler = (e) => draw(greeting());
-      this.element.querySelector('.header__back').addEventListener('click', handler);
+      this.element.querySelector('.header__back').addEventListener('click', () => {
+        draw(greeting());
+      });
 
       this.element.querySelector('.rules__input').oninput = (evt) => {
         if (evt.target.value) {
@@ -84,11 +78,6 @@ export default () => {
       evt.preventDefault();
       draw(startGame());
     }
-
-    // onClick(evt, WHAT) {
-    //  evt.preventDefault();
-    //  draw(WHAT);
-    // }
 
     focus() {
       this.element.querySelector('.rules__input').focus();
