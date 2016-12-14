@@ -59,13 +59,9 @@ export const addAnswer = (data, answer) => {
   let copyCat = data.answer.slice(0, data.answer.length);
   copyCat.push(answer);
 
-  return copyCat;
-
-// TypeError: Object.assing is not a function
-
-//  return Object.assing({}, data, {
-//    answer: copyCat
-//  });
+  return Object.assign({}, {
+    answer: copyCat
+  });
 };
 
 
