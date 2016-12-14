@@ -59,7 +59,7 @@ export const addAnswer = (data, answer) => {
   let copyCat = data.answer.slice(0, data.answer.length);
   copyCat.push(answer);
 
-  return Object.assign({}, {
+  return Object.assign({}, data, {
     answer: copyCat
   });
 };

@@ -30,7 +30,7 @@ describe('Game', function () {
         let copyCat = gameData.answer;
 
         assert.notEqual(addAnswer(gameData, 1), copyCat);
-        assert.deepEqual(addAnswer(gameData, '1, 2'), {answer: ['1, 2']});
+        assert.ok(addAnswer(gameData, '1, 2').answer.length, 1);
       });
     });
   });
