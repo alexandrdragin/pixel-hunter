@@ -1,6 +1,8 @@
 import getElementFromTemplate from '../getElementFromTemplate';
 import draw from '../draw.js';
 
+import questsData from './questsData.js';
+
 import {fullHeader} from './header.js';
 import statsBlock from './statsBlock.js';
 
@@ -8,6 +10,8 @@ import {fillQuestionTypeEach, fillQuestionTypedrawOrPhoto, fillQuestionTypefindO
 
 import startGame from './startGame';
 
+import {setTime} from './set.js';
+import timer from './timer';
 
 // в зависимости от типа вопроса погдрузка нужного шаблона
 // заполнение его данными
@@ -40,6 +44,14 @@ export default (typeOfQuestion, question) => {
       ${statsBlock}
     </div>
   `);
+
+  clearInterval(timer);
+
+  timer(30, function (s) {
+    setTime(questsData, s);
+  }, function (s) {
+    throw new Error('timeout, life--, wrongAnswers++ > nextlevel');
+  });
 
 // bindhandlers
   let answers = gameScreen.querySelectorAll('.game__option');
