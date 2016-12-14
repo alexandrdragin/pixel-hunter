@@ -1,8 +1,35 @@
-import questsData from './questsData';
+import gameData from './questsData';
 
 export const setTime = (game, time) => {
+
+  if (time > 30) {
+    throw new RangeError('wtf');
+  }
+
   return Object.assign({}, game, {
-    time: time
+    base: {time: time}
+  });
+};
+
+export const hasLevel = (currentLevel) =>
+  typeof gameData.questions[`${currentLevel}`] !== 'undefined';
+
+export const getLevel = (game, currentLevel) => {
+  if (!hasLevel(currentLevel)) {
+    throw new RangeError(`This game has no level ${currentLevel}`);
+  }
+
+  return game.questions[`${currentLevel}`];
+};
+
+export const setFinalResult = (result) => {
+
+  if (result === null) {
+    throw new RangeError('wtf');
+  }
+
+  return Object.assign({}, {
+    player: {result: result}
   });
 };
 
@@ -13,31 +40,37 @@ export const setLives = (game, lives) => {
   }
 
   return Object.assign({}, game, {
-    lives: lives
+    base: {lives: lives}
   });
 };
 
-export const setCurrentLevel = (game, level) => {
+export const setCurrentLevel = (game, currentLevel) => {
   return Object.assign({}, game, {
-    level: level
+    base: {currentLevel: currentLevel}
   });
 };
 
-export const getPoints = (points) => {
-  return points.rightAnswers * 100 + points.fast * 50 + points.lives * 50
-  - points.slow * 50;
+export const getPoints = (rightAnswers, fast, lives, slow) => {
+  return rightAnswers * 100 + fast * 50 + lives * 50
+  - slow * 50;
 };
 
-export const addAnswer = (answer) => {
-  questsData.player.push({answer: answer});
+export const addAnswer = (data, answer) => {
+  let copyCat = data.answer.slice(0, data.answer.length);
+  copyCat.push(answer);
+
+  return Object.assign({}, data, {
+    answer: copyCat
+  });
 };
 
-export const checkAnswerSpeed = (time) => {
+
+export const checkAnswerSpeed = (data, time, answer) => {
   if (time < 10) {
-    return questsData.player.slow++;
+    return addAnswer(data, answer + 'slow');
   }
   if (time > 20) {
-    return questsData.player.fast++;
+    return addAnswer(data, answer + 'fast');
   } else {
     return 'regular time';
   }
