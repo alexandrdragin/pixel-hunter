@@ -24,6 +24,7 @@ export default (typeOfQuestion, question) => {
     constructor(data) {
       super();
       this.data = data;
+
       this.header = new Header();
 
       this.questBlock = [];
@@ -55,7 +56,7 @@ export default (typeOfQuestion, question) => {
 
     getMarkup() {
       return `
-      ${this.header.element()}
+      ${this.header.getMarkup()}
       <div class="game">
         ${this.questBlock}
         ${statsBlock}

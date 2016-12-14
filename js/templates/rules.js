@@ -13,7 +13,6 @@ export default () => {
     constructor(data) {
       super();
       this.data = data;
-      this.rulesSubmit = this.element.querySelector('.rules__button');
 
       this.header = new Header();
     }
@@ -45,7 +44,7 @@ export default () => {
         </div>`);
 
       return `
-        ${this.header.smallHeader}
+        ${this.header.smallHeader()}
         ${rulesBlock}
       `;
     }
