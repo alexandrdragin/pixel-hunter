@@ -2,6 +2,7 @@ import questsData from './questsData';
 import {setTime,
         setLives,
         setCurrentLevel,
+        setFinalResult,
         getPoints,
         addAnswer,
         checkAnswerSpeed
@@ -32,12 +33,13 @@ class Model {
     this._state = setCurrentLevel(this._state, this._state.questions + 1);
   }
 
-  addAnswerWithTime() {
+  addAnswer() {
     this._state = checkAnswerSpeed(this._state.time);
-    return addAnswer();
+    this._state = addAnswer(this._state);
   }
 
   end() {
+    this._state = setFinalResult(this._state);
     this._state = getPoints(this._state);
   }
 

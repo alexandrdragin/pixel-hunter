@@ -27,9 +27,6 @@ describe('Game', function () {
       });
 
       it('If I add answer Ill go to the next level', () => {
-        let copyCat = gameData.answer;
-
-        assert.notEqual(addAnswer(gameData, 1), copyCat);
         assert.ok(addAnswer(gameData, '1, 2').answer.length, 1);
       });
     });
