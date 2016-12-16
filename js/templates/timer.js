@@ -6,6 +6,7 @@ const timer = (seconds, tick, end) => {
     setInterval(function () {
       timer(seconds, tick, end);
     }, 1000);
+  // вопрос  console.log(seconds);
   } else {
     end();
   }

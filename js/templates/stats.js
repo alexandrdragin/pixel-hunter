@@ -1,6 +1,9 @@
 import AbstractView from '../abstract-view';
 
-import {smallHeader} from './header.js';
+import Header from './header.js';
+
+import draw from '../draw';
+import startGame from './startGame';
 
 export default () => {
 
@@ -8,6 +11,8 @@ export default () => {
     constructor(data) {
       super();
       this.data = data;
+
+      this.header = new Header();
 
       const finalResult = {
         win: 'Победа!',
@@ -175,9 +180,22 @@ export default () => {
 
     getMarkup() {
       return `
-        ${smallHeader}
+        ${this.header.smallHeader()}
         ${this.result}
       `;
+    }
+
+    // вопрос
+    bindHandlers() {
+      this._element.querySelector('.header__back').addEventListener('click', this.onClick);
+    }
+
+    clearHandlers() {
+      this._element.querySelector('.header__back').removeEventListener('click', this.onClick);
+    }
+
+    onClick() {
+      draw(startGame());
     }
   }
 

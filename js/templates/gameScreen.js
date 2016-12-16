@@ -26,7 +26,6 @@ export default (typeOfQuestion, question) => {
       this.data = data;
 
       this.header = new Header();
-
       this.questBlock = [];
 
       this.answer = null;
