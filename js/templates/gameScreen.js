@@ -67,27 +67,51 @@ export default (typeOfQuestion, question) => {
     bindHandlers() {
       let answers = this.element.querySelectorAll('.game__answer');
 
-      if (answers.length === 0) {
-        answers = this.element.querySelectorAll('.game__option');
-      }
-
-      for (const answer of answers) {
-        answer.addEventListener('click', this.onClick);
+      switch (answers.length) {
+        case 0:
+          answers = this.element.querySelectorAll('.game__option');
+          for (const answer of answers) {
+            answer.addEventListener('click', this.onClickPrev);
+          }
+          break;
+        case 2:
+          for (const answer of answers) {
+            answer.addEventListener('click', this.onClickPrev);
+          }
+          break;
+        case 4:
+          for (const item of answers) {
+            item.onclick = (event) => {
+              event.preventDefault();
+              event.currentTarget.querySelector('input[type=radio]').checked = true;
+              const checkedAnswers = this.element.querySelectorAll('input[type=radio]:checked');
+              if (checkedAnswers.length === 2) {
+                this.onClick();
+              }
+            };
+          }
+          break;
+        default:
+          throw new Error('wtf');
       }
     }
 
+    // вопрос
     clearHandlers() {
       this.answer.removeEventListener('click', this.onClick);
+      this.answer.removeEventListener('click', this.onClickPrev);
     }
 
 
     onClick(evt) {
-      evt.preventDefault();
       draw(startGame());
     }
 
+    onClickPrev(evt) {
+      evt.preventDefault();
+      draw(startGame());
+    }
   }
 
   return new StartGame().element;
-
 };
