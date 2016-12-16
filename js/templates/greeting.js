@@ -1,24 +1,42 @@
-import getElementFromTemplate from '../getElementFromTemplate';
+import AbstractView from '../abstract-view';
 
 import rules from './rules';
 import draw from '../draw';
 
 export default () => {
 
-  const greeting = getElementFromTemplate(`<div class="greeting  central--blur">
-      <div class="greeting__logo"><img src="img/logo_big.png" width="201" height="89" alt="Pixel Hunter"></div>
-      <h1 class="greeting__asterisk">*</h1>
-      <div class="greeting__challenge">
-        <h3>Лучшие художники-фотореалисты бросают&nbsp;тебе&nbsp;вызов!</h3>
-        <p>Правила игры просты.<br> Нужно отличить рисунок&nbsp;от фотографии и сделать выбор.<br> Задача кажется тривиальной, но не думай, что все так просто.<br> Фотореализм обманчив и коварен.<br> Помни, главное — смотреть очень внимательно.</p>
-      </div>
-      <div class="greeting__continue"><span><img src="img/arrow_right.svg" width="64" height="64" alt="Next"></span></div>
-    </div>`);
+  class Greeting extends AbstractView {
+    constructor(data) {
+      super();
+      this.data = data;
+    }
 
-  const greetingContinue = greeting.querySelector('.greeting__continue');
+    getMarkup() {
+      return `
+      <div class="greeting  central--blur">
+          <div class="greeting__logo"><img src="img/logo_big.png" width="201" height="89" alt="Pixel Hunter"></div>
+          <h1 class="greeting__asterisk">*</h1>
+          <div class="greeting__challenge">
+            <h3>Лучшие художники-фотореалисты бросают&nbsp;тебе&nbsp;вызов!</h3>
+            <p>Правила игры просты.<br> Нужно отличить рисунок&nbsp;от фотографии и сделать выбор.<br> Задача кажется тривиальной, но не думай, что все так просто.<br> Фотореализм обманчив и коварен.<br> Помни, главное — смотреть очень внимательно.</p>
+          </div>
+          <div class="greeting__continue"><span><img src="img/arrow_right.svg" width="64" height="64" alt="Next"></span></div>
+        </div>
+          `;
+    }
 
-  const handler = (e) => draw(rules());
-  greetingContinue.addEventListener('click', handler);
+    bindHandlers() {
+      this.element.querySelector('.greeting__continue').addEventListener('click', this.onClick);
+    }
 
-  return greeting;
+    clearHandlers() {
+      this.element.querySelector('.greeting__continue').removeEventListener('click', this.onClick);
+    }
+
+    onClick() {
+      draw(rules());
+    }
+ }
+
+  return new Greeting().element;
 };
