@@ -1,27 +1,58 @@
 import questsData from './questsData.js';
-import lives from './lives.js';
+import AbstractView from '../abstract-view';
 
-const backHeader = `<div class="header__back">
-    <span class="back">
-      <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
-      <img src="img/logo_small.png" width="101" height="44">
-    </span>
-</div>`;
+export default class Header extends AbstractView {
+  constructor(data) {
+    super();
+    this.data = questsData;
+  }
 
-const gameHeader = `<h1 class="game__timer">${questsData.base.timer}</h1>
-<div class="game__lives">
-  ${lives(questsData)}
-</div>`;
+  lives(data) {
+    const MAX_LIVES = 3;
+    const emptyHeartIcon = 'img/heart__empty.svg';
+    const fullHeartIcon = 'img/heart__full.svg';
 
-const smallHeader = `
-  <header class="header">
-    ${backHeader}
-  </header>`;
+    let hearts = '';
+    for (let i = 0; i < MAX_LIVES; i++) {
+      hearts += `<img src="${this.data.base.lives > i ? fullHeartIcon : emptyHeartIcon}" class="game__heart" alt="Life" width="32" height="32">`;
+    }
+    return hearts;
+  }
 
-const fullHeader = `
-  <header class="header">
-    ${backHeader}
-    ${gameHeader}
-  </header>`;
+  backHeader() {
+    return `
+      <div class="header__back">
+        <span class="back">
+          <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
+          <img src="img/logo_small.png" width="101" height="44">
+        </span>
+      </div>
+    `;
+  }
 
-export {smallHeader, fullHeader};
+  gameHeader() {
+    return `
+      <h1 class="game__timer">${this.data.base.timer}</h1>
+      <div class="game__lives">
+        ${this.lives(this.data)}
+      </div>
+    `;
+  }
+
+  smallHeader() {
+    return `
+      <header class="header">
+        ${this.backHeader()}
+      </header>
+    `;
+  }
+
+  getMarkup() {
+    return `
+      <header class="header">
+        ${this.backHeader()}
+        ${this.gameHeader()}
+      </header>
+    `;
+  }
+}

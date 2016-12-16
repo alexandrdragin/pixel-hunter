@@ -1,5 +1,9 @@
+let mainElement;
+
 const draw = (page) => {
-  let mainElement = document.querySelector('#main');
+  if (!mainElement) {
+    mainElement = document.getElementById('main');
+  }
 
   mainElement.innerHTML = '';
   mainElement.appendChild(page);
