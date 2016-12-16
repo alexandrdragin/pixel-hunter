@@ -13,7 +13,7 @@ class Model {
     this._state = state;
   }
 
-  updateLivesIfHasLives(lives) {
+  updateLives(lives) {
     this._state = setLives(this._state, lives);
   }
 
