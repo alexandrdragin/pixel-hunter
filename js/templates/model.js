@@ -13,8 +13,8 @@ class Model {
     this._state = state;
   }
 
-  hasLives() {
-    this._state = setLives(this._state);
+  updateLivesIfHasLives(lives) {
+    this._state = setLives(this._state, lives);
   }
 
   tick() {
@@ -33,9 +33,9 @@ class Model {
     this._state = setCurrentLevel(this._state, this._state.questions + 1);
   }
 
-  addAnswer() {
+  addAnswer(answer) {
     this._state = checkAnswerSpeed(this._state.time);
-    this._state = addAnswer(this._state);
+    this._state = addAnswer(this._state, answer);
   }
 
   end() {
