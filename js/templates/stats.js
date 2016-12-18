@@ -3,7 +3,7 @@ import AbstractView from '../abstract-view';
 import Header from './header.js';
 
 import draw from '../draw';
-import startGame from './startGame';
+import rules from './rules';
 
 export default () => {
 
@@ -195,7 +195,7 @@ export default () => {
     }
 
     onClick() {
-      draw(startGame());
+      draw(rules());
     }
   }
 

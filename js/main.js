@@ -1,7 +1,5 @@
-import intro from './templates/intro';
-
-import draw from './draw.js';
+import Application from './templates/application';
 
 (() => {
-  draw(intro());
+  Application.showWelcome();
 })();

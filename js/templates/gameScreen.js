@@ -2,8 +2,6 @@ import AbstractView from '../abstract-view';
 
 import draw from '../draw.js';
 
-import questsData from './questsData.js';
-
 import Header from './header.js';
 import statsBlock from './statsBlock.js';
 
@@ -11,7 +9,6 @@ import {fillQuestionTypeEach, fillQuestionTypedrawOrPhoto, fillQuestionTypefindO
 
 import startGame from './startGame';
 
-import {setTime} from './set.js';
 import timer from './timer';
 
 // в зависимости от типа вопроса погдрузка нужного шаблона
@@ -46,11 +43,10 @@ export default (typeOfQuestion, question) => {
 
       clearInterval(timer);
 
-      timer(30, function (s) {
-        setTime(questsData, s);
-      }, function (s) {
+      // вопрос
+      setInterval(timer(30, function () {
         throw new Error('timeout, life--, wrongAnswers++ > nextlevel');
-      });
+      }), 1000);
     }
 
     getMarkup() {
