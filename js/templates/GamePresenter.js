@@ -1,0 +1,91 @@
+import draw from '../draw';
+import getElementFromTemplate from './getElementFromTemplate';
+
+import Header from './header';
+import model from './model';
+
+import startGame from './startGame';
+
+class GamePresenter {
+  constructor(GameModel) {
+    this.timer = null;
+    this.header = null;
+    this.content = null;
+
+    this.model = GameModel;
+  }
+
+  createScreenGame() {
+    let screenGame = getElementFromTemplate('');
+
+    this.header = this.createHeader();
+    screenGame.appendChild(this.header);
+
+    draw(startGame);
+  }
+
+  startGame() {
+    this.model.reset();
+    this.createScreenGame();
+    this.startTimer();
+  }
+
+  endGame() {
+    this.model.end();
+  }
+
+  startTask() {
+    this.updateContentGame();
+    this.startTimer();
+  }
+
+  nextTask() {
+    if (!(this.model.hasLevel(this.state.base.currentLevel + 1))) {
+      this.endGame();
+      return;
+    }
+
+    this.model.nextTask();
+    this.startTask();
+  }
+
+  startTimer() {
+    this.model.resetTime();
+    this.updateHeader();
+
+    this.timer = setInterval(() => {
+      if (this.model.timeIsOver()) {
+        this.nextTask();
+        return;
+      }
+
+      this.model.tick();
+      this.updateHeader();
+    }, 1000);
+  }
+
+  stopTimer() {
+    clearInterval(this.timer);
+  }
+
+  onAnswer(time, answer) {
+    this.stopTimer();
+    this.model.addAnswer(time, answer);
+    this.nextTask();
+  }
+
+  createHeader() {
+    return new Header(this.model.state);
+  }
+
+  updateHeader() {
+    const newHeader = this.createHeader();
+
+    this.header.parentElement.replaceChild(newHeader, this.header);
+    this.header = newHeader;
+  }
+}
+
+const gamePresenter = new GamePresenter(model);
+
+export default () => gamePresenter.startGame();
