@@ -4,43 +4,53 @@ import {setTime,
         setCurrentLevel,
         setFinalResult,
         getPoints,
-        addAnswer,
         checkAnswerSpeed
 } from './set';
 
 class Model {
   constructor(state = questsData.base) {
-    this._state = state;
+    this.state = state;
+  }
+
+  reset() {
+    this.state = questsData.base;
+  }
+
+  get state() {
+    return this.state;
+  }
+
+  getStats() {
+    return this.state.answer;
   }
 
   updateLives(lives) {
-    this._state = setLives(this._state, lives);
+    this.state = setLives(this.state, lives);
   }
 
   tick() {
-    this._state = setTime(this._state, this._state.time - 1);
+    this.state = setTime(this.state, this.state.time - 1);
   }
 
   resetTime() {
-    this._state = setTime(this._state, 0);
+    this.state = setTime(this.state, 30);
   }
 
   timeIsOver() {
-    return this._state.time >= this._state.timeLimit;
+    return this.state.time >= 0;
   }
 
   nextTask() {
-    this._state = setCurrentLevel(this._state, this._state.questions + 1);
+    this.state = setCurrentLevel(this.state, this.state.base.currentLevel + 1);
   }
 
-  addAnswer(answer) {
-    this._state = checkAnswerSpeed(this._state.time);
-    this._state = addAnswer(this._state, answer);
+  addAnswer(time, answer) {
+    this.state = checkAnswerSpeed(this.state, time, answer);
   }
 
   end() {
-    this._state = setFinalResult(this._state);
-    this._state = getPoints(this._state);
+    this.state = setFinalResult(this.state);
+    this.state = getPoints(this.state);
   }
 
 }

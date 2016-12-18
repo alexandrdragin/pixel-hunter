@@ -1,10 +1,9 @@
-import questsData from './questsData.js';
 import AbstractView from '../abstract-view';
 
 export default class Header extends AbstractView {
   constructor(data) {
     super();
-    this.data = questsData;
+    this.data = data;
   }
 
   lives(data) {

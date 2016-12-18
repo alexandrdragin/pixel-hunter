@@ -5,6 +5,7 @@ import startGame from './startGame';
 
 import draw from '../draw';
 
+import questsData from './questsData';
 import Header from './header';
 
 export default () => {
@@ -14,7 +15,7 @@ export default () => {
       super();
       this.data = data;
 
-      this.header = new Header();
+      this.header = new Header(questsData);
     }
 
     getMarkup() {
@@ -78,8 +79,9 @@ export default () => {
       draw(startGame());
     }
 
+    // вопрос
     focus() {
-      this.element.querySelector('.rules__input').focus();
+      this._element.querySelector('.rules__input').focus();
     }
  }
   return new Rules().element;

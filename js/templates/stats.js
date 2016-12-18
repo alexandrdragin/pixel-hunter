@@ -1,5 +1,6 @@
 import AbstractView from '../abstract-view';
 
+import questsData from './questsData';
 import Header from './header.js';
 
 import draw from '../draw';
@@ -12,7 +13,7 @@ export default () => {
       super();
       this.data = data;
 
-      this.header = new Header();
+      this.header = new Header(questsData);
 
       const finalResult = {
         win: 'Победа!',

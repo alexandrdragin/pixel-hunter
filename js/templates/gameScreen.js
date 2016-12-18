@@ -2,6 +2,7 @@ import AbstractView from '../abstract-view';
 
 import draw from '../draw.js';
 
+import questsData from './questsData';
 import Header from './header.js';
 import statsBlock from './statsBlock.js';
 
@@ -9,20 +10,18 @@ import {fillQuestionTypeEach, fillQuestionTypedrawOrPhoto, fillQuestionTypefindO
 
 import startGame from './startGame';
 
-import timer from './timer';
-
 // в зависимости от типа вопроса погдрузка нужного шаблона
 // заполнение его данными
 // выгрузка полностью собранного экрана игры
 
 export default (typeOfQuestion, question) => {
 
-  class StartGame extends AbstractView {
+  class GameScreen extends AbstractView {
     constructor(data) {
       super();
       this.data = data;
 
-      this.header = new Header();
+      this.header = new Header(questsData);
       this.questBlock = [];
 
       this.answer = null;
@@ -41,12 +40,6 @@ export default (typeOfQuestion, question) => {
           throw new Error('sorry, wierd question');
       }
 
-      clearInterval(timer);
-
-      // вопрос
-      setInterval(timer(30, function () {
-        throw new Error('timeout, life--, wrongAnswers++ > nextlevel');
-      }), 1000);
     }
 
     getMarkup() {
@@ -108,5 +101,5 @@ export default (typeOfQuestion, question) => {
     }
   }
 
-  return new StartGame().element;
+  return new GameScreen().element;
 };

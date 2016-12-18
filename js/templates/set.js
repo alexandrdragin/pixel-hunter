@@ -64,7 +64,6 @@ export const addAnswer = (data, answer) => {
   });
 };
 
-
 export const checkAnswerSpeed = (data, time, answer) => {
   if (time < 10) {
     return addAnswer(data, answer + 'slow');
