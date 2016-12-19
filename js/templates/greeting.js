@@ -1,7 +1,6 @@
 import AbstractView from '../abstract-view';
 
-import rules from './rules';
-import draw from '../draw';
+import Application from './application';
 
 export default () => {
 
@@ -34,7 +33,7 @@ export default () => {
     }
 
     onClick() {
-      draw(rules());
+      Application.showRules();
     }
  }
 

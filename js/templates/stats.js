@@ -3,8 +3,7 @@ import AbstractView from '../abstract-view';
 import questsData from './questsData';
 import Header from './header.js';
 
-import draw from '../draw';
-import rules from './rules';
+import Application from './application';
 
 export default () => {
 
@@ -196,7 +195,7 @@ export default () => {
     }
 
     onClick() {
-      draw(rules());
+      Application.showRules();
     }
   }
 

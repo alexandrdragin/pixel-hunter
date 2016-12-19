@@ -1,5 +1,5 @@
 import draw from '../draw';
-import getElementFromTemplate from './getElementFromTemplate';
+import getElementFromTemplate from '../getElementFromTemplate';
 
 import Header from './header';
 import model from './model';
@@ -21,7 +21,7 @@ class GamePresenter {
     this.header = this.createHeader();
     screenGame.appendChild(this.header);
 
-    draw(startGame);
+    draw(startGame());
   }
 
   startGame() {
@@ -75,7 +75,7 @@ class GamePresenter {
   }
 
   createHeader() {
-    return new Header(this.model.state);
+    return new Header(this.model.state).element;
   }
 
   updateHeader() {

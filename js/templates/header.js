@@ -1,3 +1,4 @@
+
 import AbstractView from '../abstract-view';
 
 export default class Header extends AbstractView {
@@ -13,7 +14,7 @@ export default class Header extends AbstractView {
 
     let hearts = '';
     for (let i = 0; i < MAX_LIVES; i++) {
-      hearts += `<img src="${this.data.base.lives > i ? fullHeartIcon : emptyHeartIcon}" class="game__heart" alt="Life" width="32" height="32">`;
+      hearts += `<img src="${this.data.lives > i ? fullHeartIcon : emptyHeartIcon}" class="game__heart" alt="Life" width="32" height="32">`;
     }
     return hearts;
   }
@@ -31,9 +32,9 @@ export default class Header extends AbstractView {
 
   gameHeader() {
     return `
-      <h1 class="game__timer">${this.data.base.timer}</h1>
+      <h1 class="game__timer">${this.data.timer}</h1>
       <div class="game__lives">
-        ${this.lives(this.data)}
+        ${this.lives(this.data.lives)}
       </div>
     `;
   }

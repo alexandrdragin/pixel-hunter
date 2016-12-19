@@ -1,14 +1,11 @@
 import AbstractView from '../abstract-view';
-
-import draw from '../draw.js';
+import Application from './application';
 
 import questsData from './questsData';
 import Header from './header.js';
 import statsBlock from './statsBlock.js';
 
 import {fillQuestionTypeEach, fillQuestionTypedrawOrPhoto, fillQuestionTypefindOne} from './fillQuestion.js';
-
-import startGame from './startGame';
 
 // в зависимости от типа вопроса погдрузка нужного шаблона
 // заполнение его данными
@@ -92,12 +89,12 @@ export default (typeOfQuestion, question) => {
 
 
     onClick(evt) {
-      draw(startGame());
+      Application.showGame();
     }
 
     onClickPrev(evt) {
       evt.preventDefault();
-      draw(startGame());
+      Application.showGame();
     }
   }
 

@@ -1,7 +1,6 @@
 import AbstractView from '../abstract-view';
 
-import greeting from './greeting';
-import draw from '../draw.js';
+import Application from './application';
 
 export default () => {
 
@@ -29,7 +28,7 @@ export default () => {
     }
 
     onClick() {
-      draw(greeting());
+      Application.showGreeting();
     }
  }
 

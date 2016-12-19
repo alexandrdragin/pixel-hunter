@@ -1,9 +1,6 @@
 import AbstractView from '../abstract-view';
 
-import greeting from './greeting';
-import startGame from './startGame';
-
-import draw from '../draw';
+import Application from './application';
 
 import questsData from './questsData';
 import Header from './header';
@@ -54,11 +51,11 @@ export default () => {
       this.rulesSubmit = this.element.querySelector('.rules__button');
       this.rulesSubmit.addEventListener('click', (evt) => {
         evt.preventDefault();
-        draw(startGame());
+        Application.showGame();
       });
 
       this.element.querySelector('.header__back').addEventListener('click', () => {
-        draw(greeting());
+        Application.showGreeting();
       });
 
       this.element.querySelector('.rules__input').oninput = (evt) => {
@@ -76,7 +73,7 @@ export default () => {
 
     onClick(evt) {
       evt.preventDefault();
-      draw(startGame());
+      Application.showGame();
     }
 
     // вопрос

@@ -9,48 +9,48 @@ import {setTime,
 
 class Model {
   constructor(state = questsData.base) {
-    this.state = state;
+    this._state = state;
   }
 
   reset() {
-    this.state = questsData.base;
+    this._state = questsData.base;
   }
 
   get state() {
-    return this.state;
+    return this._state;
   }
 
   getStats() {
-    return this.state.answer;
+    return this._state.answer;
   }
 
   updateLives(lives) {
-    this.state = setLives(this.state, lives);
+    this._state = setLives(this._state, lives);
   }
 
   tick() {
-    this.state = setTime(this.state, this.state.time - 1);
+    this._state = setTime(this._state, this._state.time - 1);
   }
 
   resetTime() {
-    this.state = setTime(this.state, 30);
+    this._state = setTime(this._state, 30);
   }
 
   timeIsOver() {
-    return this.state.time >= 0;
+    return this._state.time >= 0;
   }
 
   nextTask() {
-    this.state = setCurrentLevel(this.state, this.state.base.currentLevel + 1);
+    this._state = setCurrentLevel(this._state, this._state.base.currentLevel + 1);
   }
 
   addAnswer(time, answer) {
-    this.state = checkAnswerSpeed(this.state, time, answer);
+    this._state = checkAnswerSpeed(this._state, time, answer);
   }
 
   end() {
-    this.state = setFinalResult(this.state);
-    this.state = getPoints(this.state);
+    this._state = setFinalResult(this._state);
+    this._state = getPoints(this._state);
   }
 
 }
