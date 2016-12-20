@@ -1,6 +1,6 @@
-import AbstractView from '../abstract-view';
+import AbstractView from './abstract-view';
 
-import Application from './application';
+import Application from '../application';
 
 export default () => {
 

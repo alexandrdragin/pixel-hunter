@@ -1,9 +1,9 @@
-import draw from '../draw';
-import getElementFromTemplate from '../getElementFromTemplate';
+import draw from './utils/draw';
+import getElementFromTemplate from './utils/getElementFromTemplate';
 
-import Header from './header';
-import model from './model';
+import Header from './view/header';
 
+import model from './model/model';
 import startGame from './startGame';
 
 class GamePresenter {
@@ -40,7 +40,7 @@ class GamePresenter {
   }
 
   nextTask() {
-    if (!(this.model.hasLevel(this.state.base.currentLevel + 1))) {
+    if (!(this.model.hasLevel(this.model._state.base.currentLevel + 1))) {
       this.endGame();
       return;
     }
@@ -54,7 +54,7 @@ class GamePresenter {
     this.updateHeader();
 
     this.timer = setInterval(() => {
-      if (this.model.timeIsOver()) {
+      if (!this.model.timeIsOver()) {
         this.nextTask();
         return;
       }
@@ -75,7 +75,7 @@ class GamePresenter {
   }
 
   createHeader() {
-    return new Header(this.model.state).element;
+    return new Header(this.model.state.base).element;
   }
 
   updateHeader() {

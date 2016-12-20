@@ -1,9 +1,9 @@
-import AbstractView from '../abstract-view';
-
-import Application from './application';
-
-import questsData from './questsData';
+import AbstractView from './abstract-view';
 import Header from './header';
+
+import Application from '../application';
+
+import questsData from '../data/questsData';
 
 export default () => {
 

@@ -1,9 +1,10 @@
-import AbstractView from '../abstract-view';
-import Application from './application';
+import AbstractView from './abstract-view';
+import Application from '../application';
 
-import questsData from './questsData';
+import questsData from '../date/questsData';
 import Header from './header.js';
-import statsBlock from './statsBlock.js';
+
+import statsBlock from '../templates/statsBlock.js';
 
 import {fillQuestionTypeEach, fillQuestionTypedrawOrPhoto, fillQuestionTypefindOne} from './fillQuestion.js';
 

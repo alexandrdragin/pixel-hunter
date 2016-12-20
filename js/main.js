@@ -1,4 +1,4 @@
-import Application from './templates/application';
+import Application from './Application';
 
 (() => {
   Application.showWelcome();

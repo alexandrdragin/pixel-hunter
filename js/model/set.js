@@ -1,13 +1,13 @@
-import gameData from './questsData';
+import gameData from './data/questsData';
 
-export const setTime = (game, time) => {
+export const setTime = (game, timer) => {
 
-  if (time > 30) {
+  if (timer > 30) {
     throw new RangeError('wtf');
   }
 
   return Object.assign({}, game, {
-    base: {time: time}
+    base: {timer: timer}
   });
 };
 

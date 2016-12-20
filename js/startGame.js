@@ -1,6 +1,7 @@
-import questsData from './questsData.js';
-import stats from './stats';
-import gameScreen from './gameScreen.js';
+import questsData from './data/questsData.js';
+
+import stats from './templates/stats';
+import gameScreen from './view/gameScreen.js';
 
 export default () => {
 

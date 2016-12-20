@@ -1,4 +1,4 @@
-import questsData from './questsData';
+import questsData from '../data/questsData';
 import {setTime,
         setLives,
         setCurrentLevel,
@@ -8,12 +8,13 @@ import {setTime,
 } from './set';
 
 class Model {
-  constructor(state = questsData.base) {
+  constructor(state = questsData) {
     this._state = state;
+    // вопрос
   }
 
   reset() {
-    this._state = questsData.base;
+    this._state = questsData;
   }
 
   get state() {
@@ -25,23 +26,28 @@ class Model {
   }
 
   updateLives(lives) {
-    this._state = setLives(this._state, lives);
+    this._state = setLives(this._state.base.lives, lives);
+  }
+
+  hasLevel() {
+    return this._state.base.currentLevel + 1;
   }
 
   tick() {
-    this._state = setTime(this._state, this._state.time - 1);
+    this._state = setTime(this._state.base.timer, this._state.base.timer - 1);
   }
 
   resetTime() {
-    this._state = setTime(this._state, 30);
+    this._state = setTime(this._state.base.timer, 30);
   }
 
   timeIsOver() {
-    return this._state.time >= 0;
+    debugger;
+    return this._state.base.timer >= 0;
   }
 
   nextTask() {
-    this._state = setCurrentLevel(this._state, this._state.base.currentLevel + 1);
+    this._state = setCurrentLevel(this._state.base.currentLevel, this._state.base.currentLevel + 1);
   }
 
   addAnswer(time, answer) {

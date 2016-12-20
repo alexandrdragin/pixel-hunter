@@ -5,7 +5,7 @@ import {setLives,
    setTime,
     getPoints,
      setFinalResult,
-      addAnswer, setCurrentLevel, getLevel} from './set';
+      addAnswer, setCurrentLevel, getLevel} from '../model/set';
 
 describe('Game', function () {
 

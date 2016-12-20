@@ -1,12 +1,11 @@
-import draw from '../draw.js';
+import draw from './utils/draw.js';
 
-import intro from './intro';
+import intro from './view/intro';
+import greeting from './view/greeting';
+import rules from './view/rules';
+import stats from './view/stats';
 
-import greeting from './greeting';
-import rules from './rules';
 import startGame from './startGame';
-import stats from './stats';
-
 import gamePresenter from './gamePresenter';
 
 export default class Application {
