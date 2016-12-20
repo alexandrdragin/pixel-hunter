@@ -1,4 +1,4 @@
-import gameData from './data/questsData';
+import gameData from '../data/questsData';
 
 export const setTime = (game, timer) => {
 

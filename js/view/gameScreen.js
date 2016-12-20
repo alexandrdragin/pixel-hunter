@@ -1,12 +1,12 @@
 import AbstractView from './abstract-view';
 import Application from '../application';
 
-import questsData from '../date/questsData';
+import questsData from '../data/questsData';
 import Header from './header.js';
 
 import statsBlock from '../templates/statsBlock.js';
 
-import {fillQuestionTypeEach, fillQuestionTypedrawOrPhoto, fillQuestionTypefindOne} from './fillQuestion.js';
+import {fillQuestionTypeEach, fillQuestionTypedrawOrPhoto, fillQuestionTypefindOne} from '../templates/fillQuestion.js';
 
 // в зависимости от типа вопроса погдрузка нужного шаблона
 // заполнение его данными
