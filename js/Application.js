@@ -5,7 +5,6 @@ import greeting from './view/greeting';
 import rules from './view/rules';
 import stats from './view/stats';
 
-import startGame from './startGame';
 import gamePresenter from './gamePresenter';
 
 export default class Application {
@@ -27,7 +26,7 @@ export default class Application {
   }
 
   static showStats(data) {
-    draw(startGame(stats(data)));
+    draw(stats(data));
   }
 
 }

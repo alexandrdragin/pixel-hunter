@@ -1,7 +1,7 @@
 import AbstractView from './abstract-view';
 import Header from './header';
 
-import Application from '../application';
+import Application from '../Application';
 
 import questsData from '../data/questsData';
 

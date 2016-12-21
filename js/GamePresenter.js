@@ -1,17 +1,21 @@
 import draw from './utils/draw';
 import getElementFromTemplate from './utils/getElementFromTemplate';
 
+import stats from './view/stats';
+import gameScreen from './view/gameScreen.js';
+
+import Application from './Application';
 import Header from './view/header';
 
 import model from './model/model';
-import startGame from './startGame';
 
 class GamePresenter {
   constructor(GameModel) {
     this.timer = null;
+    this.timer = null;
+    this.level = null;
     this.header = null;
     this.content = null;
-
     this.model = GameModel;
   }
 
@@ -21,19 +25,41 @@ class GamePresenter {
     this.header = this.createHeader();
     screenGame.appendChild(this.header);
 
-    draw(startGame());
+    this.content = this.getContentGame();
+    screenGame.appendChild(this.content);
+
+    draw(screenGame);
+  }
+
+  getContentGame() {
+    if (this.model._state.questions[this.model._state.base.currentLevel]) {
+
+      const node = gameScreen(
+          this.model._state.questions[this.model._state.base.currentLevel].type,
+          this.model._state.questions[this.model._state.base.currentLevel]
+        );
+
+      this.model._state.base.currentLevel++;
+      return node;
+
+    } else {
+      return this.endGame();
+    }
   }
 
   startGame() {
-    this.model.reset();
     this.createScreenGame();
     this.startTimer();
   }
 
   endGame() {
     this.model.end();
+    this.stopTimer();
+
+    return stats();
   }
 
+/*
   startTask() {
     this.updateContentGame();
     this.startTimer();
@@ -49,8 +75,16 @@ class GamePresenter {
     this.startTask();
   }
 
+  onAnswer(time, answer) {
+    this.stopTimer();
+    this.model.addAnswer(time, answer);
+    this.nextTask();
+  }
+*/
+
   startTimer() {
     this.model.resetTime();
+    this.stopTimer();
     this.updateHeader();
 
     this.timer = setInterval(() => {
@@ -68,12 +102,6 @@ class GamePresenter {
     clearInterval(this.timer);
   }
 
-  onAnswer(time, answer) {
-    this.stopTimer();
-    this.model.addAnswer(time, answer);
-    this.nextTask();
-  }
-
   createHeader() {
     return new Header(this.model.state.base).element;
   }
@@ -83,6 +111,19 @@ class GamePresenter {
 
     this.header.parentElement.replaceChild(newHeader, this.header);
     this.header = newHeader;
+  }
+
+  // вопрос
+  bindHandlers() {
+    this._element.querySelector('.header__back').addEventListener('click', this.onClick);
+  }
+
+  clearHandlers() {
+    this._element.querySelector('.header__back').removeEventListener('click', this.onClick);
+  }
+
+  onClick() {
+    Application.showRules();
   }
 }
 

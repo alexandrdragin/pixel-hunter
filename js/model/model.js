@@ -42,7 +42,6 @@ class Model {
   }
 
   timeIsOver() {
-    debugger;
     return this._state.base.timer >= 0;
   }
 

@@ -1,9 +1,6 @@
 import AbstractView from './abstract-view';
 
-import questsData from '../data/questsData';
-import Header from './header.js';
-
-import Application from '../application';
+import Application from '../Application';
 
 export default () => {
 
@@ -11,8 +8,6 @@ export default () => {
     constructor(data) {
       super();
       this.data = data;
-
-      this.header = new Header(questsData);
 
       const finalResult = {
         win: 'Победа!',
@@ -180,22 +175,8 @@ export default () => {
 
     getMarkup() {
       return `
-        ${this.header.smallHeader()}
         ${this.result}
       `;
-    }
-
-    // вопрос
-    bindHandlers() {
-      this._element.querySelector('.header__back').addEventListener('click', this.onClick);
-    }
-
-    clearHandlers() {
-      this._element.querySelector('.header__back').removeEventListener('click', this.onClick);
-    }
-
-    onClick() {
-      Application.showRules();
     }
   }
 

@@ -1,8 +1,5 @@
 import AbstractView from './abstract-view';
-import Application from '../application';
-
-import questsData from '../data/questsData';
-import Header from './header.js';
+import Application from '../Application';
 
 import statsBlock from '../templates/statsBlock.js';
 
@@ -19,7 +16,6 @@ export default (typeOfQuestion, question) => {
       super();
       this.data = data;
 
-      this.header = new Header(questsData);
       this.questBlock = [];
 
       this.answer = null;
@@ -42,7 +38,6 @@ export default (typeOfQuestion, question) => {
 
     getMarkup() {
       return `
-      ${this.header.getMarkup()}
       <div class="game">
         ${this.questBlock}
         ${statsBlock}
