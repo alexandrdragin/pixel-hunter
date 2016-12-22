@@ -63,11 +63,12 @@ export default (typeOfQuestion, question) => {
         case 4:
           for (const item of answers) {
             item.onclick = (event) => {
+              this.sendAnswer(event);
               event.preventDefault();
               event.currentTarget.querySelector('input[type=radio]').checked = true;
               const checkedAnswers = this.element.querySelectorAll('input[type=radio]:checked');
               if (checkedAnswers.length === 2) {
-                this.onClick();
+                this.onClick(event);
               }
             };
           }
@@ -83,6 +84,9 @@ export default (typeOfQuestion, question) => {
       this.answer.removeEventListener('click', this.onClickPrev);
     }
 
+    sendAnswer(evt) {
+      console.log(evt.target.textContent);
+    }
 
     onClick(evt) {
       Application.showGame();

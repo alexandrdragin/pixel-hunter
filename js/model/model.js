@@ -29,7 +29,7 @@ class Model {
   }
 
   updateLives(lives) {
-    this._state = setLives(this._state.base.lives, lives);
+    this._state = setLives(this._state, lives);
     console.log("updateLives", this._state);
   }
 
@@ -39,11 +39,11 @@ class Model {
 
   tick() {
     console.log("tick", this._state);
-    this._state = setTime(this._state.base.timer, this._state.base.timer - 1);
+    this._state = setTime(this._state, this._state.base.timer - 1);
   }
 
   resetTime() {
-    this._state = setTime(this._state.base.timer, 30);
+    this._state = setTime(this._state, 30);
   }
 
   timeIsOver() {
@@ -51,7 +51,7 @@ class Model {
   }
 
   nextTask() {
-    this._state = setCurrentLevel(this._state.base.currentLevel, this._state.base.currentLevel + 1);
+    this._state = setCurrentLevel(this._state, this._state.base.currentLevel + 1);
   }
 
   addAnswer(time, answer) {
