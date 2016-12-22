@@ -78,14 +78,14 @@ export default (typeOfQuestion, question) => {
       }
     }
 
-    // вопрос
+    // вопрос  ///////////////////
     clearHandlers() {
       this.answer.removeEventListener('click', this.onClick);
       this.answer.removeEventListener('click', this.onClickPrev);
     }
 
     sendAnswer(evt) {
-      console.log(evt.target.textContent);
+      // console.log(evt.target.textContent);
     }
 
     onClick(evt) {

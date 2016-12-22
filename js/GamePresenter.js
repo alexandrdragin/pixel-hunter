@@ -19,6 +19,14 @@ class GamePresenter {
     this.model = GameModel;
   }
 
+  startGame() {
+    if (!this.model._state.questions[this.model._state.base.currentLevel + 1]) {
+      this.endGame();
+    } else {
+      this.nextTask();
+    }
+  }
+
   createScreenGame() {
     let screenGame = getElementFromTemplate('');
 
@@ -33,80 +41,6 @@ class GamePresenter {
     draw(screenGame);
   }
 
-  getContentGame() {
-    console.log("1", this.model._state.base.currentLevel);
-    if (this.model._state.questions[this.model._state.base.currentLevel]) {
-
-      const node = gameScreen(
-          this.model._state.questions[this.model._state.base.currentLevel].type,
-          this.model._state.questions[this.model._state.base.currentLevel]
-        );
-
-      this.model._state.base.currentLevel++;
-      return node;
-
-    } else {
-      return this.endGame();
-    }
-  }
-
-  startGame() {
-    this.createScreenGame();
-    this.startTimer();
-  }
-
-  endGame() {
-    this.model.end();
-    this.stopTimer();
-
-    return stats();
-  }
-
-
-/*
-  startTask() {
-    this.updateContentGame();
-    this.startTimer();
-  }
-
-  nextTask() {
-    if (!(this.model.hasLevel(this.model._state.base.currentLevel + 1))) {
-      this.endGame();
-      return;
-    }
-
-    this.model.nextTask();
-    this.startTask();
-  }
-
-  onAnswer(time, answer) {
-    this.stopTimer();
-    this.model.addAnswer(time, answer);
-    this.nextTask();
-  }
-*/
-
-  startTimer() {
-    this.model.resetTime();
-    this.stopTimer();
-    this.updateHeader();
-
-    this.timer = setInterval(() => {
-      if (!this.model.timeIsOver()) {
-        this.stopTimer();
-        this.nextTask();
-        return;
-      }
-
-      this.model.tick();
-      this.updateHeader();
-    }, 1000);
-  }
-
-  stopTimer() {
-    clearInterval(this.timer);
-  }
-
   createHeader() {
     return new Header(this.model.state.base).element;
   }
@@ -118,9 +52,80 @@ class GamePresenter {
     this.header = newHeader;
   }
 
-  // вопрос
+  nextTask() {
+
+    this.createScreenGame();
+    this.model.nextTask();
+    this.startTimer();
+  }
+
+  getContentGame() {
+    const node = gameScreen(
+        this.model._state.questions[this.model._state.base.currentLevel].type,
+        this.model._state.questions[this.model._state.base.currentLevel]
+      );
+
+    return node;
+  }
+
+  startTimer() {
+    this.model.resetTime();
+    this.stopTimer();
+    this.updateHeader();
+
+    this.timers = setInterval(() => {
+      if (!this.model.timeIsOver()) {
+        this.stopTimer();
+        this.nextTask();
+        return;
+      }
+
+      this.model.tick();
+      this.updateHeader();
+    }, 1000);
+  }
+
+  // //////////////////////////
+
+  onAnswer(time, answer) {
+    this.stopTimer();
+    this.model.addAnswer(time, answer);
+    this.nextTask();
+  }
+
+  stopTimer() {
+    clearInterval(this.timers);
+  }
+
+  endGame() {
+    this.stopTimer();
+    this.model.end();
+
+    return stats();
+  }
+
+  endGame() {
+    this.stopTimer();
+    this.model.end();
+
+
+    let screenGame = getElementFromTemplate('');
+    this.header = this.createHeader();
+    screenGame.appendChild(this.header);
+
+    screenGame.appendChild(stats());
+
+    draw(screenGame);
+
+  }
+
+  // вопрос ////////////////////////////
   bindHandlers() {
     this._element.querySelector('.header__back').addEventListener('click', this.onClick);
+
+    this.element.querySelector('.header__back').addEventListener('click', () => {
+      Application.showGreeting();
+    });
   }
 
   clearHandlers() {

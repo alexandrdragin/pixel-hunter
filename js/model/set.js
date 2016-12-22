@@ -6,9 +6,9 @@ export const setTime = (game, timer) => {
     throw new RangeError('wtf');
   }
 
-  return Object.assign({}, game, {
-    base: {timer: timer}
-  });
+  let result = Object.assign({}, game);
+  result.base.timer = timer;
+  return result;
 };
 
 export const hasLevel = (currentLevel) =>
@@ -39,15 +39,16 @@ export const setLives = (game, lives) => {
     throw new RangeError('end');
   }
 
-  return Object.assign({}, game, {
-    base: {lives: lives}
-  });
+  let result = Object.assign({}, game);
+  result.base.lives = lives;
+  return result;
 };
 
 export const setCurrentLevel = (game, currentLevel) => {
-  return Object.assign({}, game, {
-    base: {currentLevel: currentLevel}
-  });
+
+  let result = Object.assign({}, game);
+  result.base.currentLevel = currentLevel;
+  return result;
 };
 
 export const getPoints = (rightAnswers, fast, lives, slow) => {
