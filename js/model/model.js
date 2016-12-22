@@ -10,10 +10,13 @@ import {setTime,
 class Model {
   constructor(state = questsData) {
     this._state = state;
+    console.log("1", state);
     // вопрос
   }
 
   reset() {
+    console.log("2", this._state);
+
     this._state = questsData;
   }
 
@@ -27,6 +30,7 @@ class Model {
 
   updateLives(lives) {
     this._state = setLives(this._state.base.lives, lives);
+    console.log("updateLives", this._state);
   }
 
   hasLevel() {
@@ -34,6 +38,7 @@ class Model {
   }
 
   tick() {
+    console.log("tick", this._state);
     this._state = setTime(this._state.base.timer, this._state.base.timer - 1);
   }
 
@@ -42,7 +47,7 @@ class Model {
   }
 
   timeIsOver() {
-    return this._state.base.timer >= 0;
+    return this._state.base.timer >= 1;
   }
 
   nextTask() {

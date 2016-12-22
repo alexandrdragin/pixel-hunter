@@ -1,7 +1,5 @@
 import AbstractView from './abstract-view';
 
-import Application from '../Application';
-
 export default () => {
 
   class Stats extends AbstractView {

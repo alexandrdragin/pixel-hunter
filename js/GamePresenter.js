@@ -28,10 +28,13 @@ class GamePresenter {
     this.content = this.getContentGame();
     screenGame.appendChild(this.content);
 
+    this.model.updateLives(3);
+
     draw(screenGame);
   }
 
   getContentGame() {
+    console.log("1", this.model._state.base.currentLevel);
     if (this.model._state.questions[this.model._state.base.currentLevel]) {
 
       const node = gameScreen(
@@ -58,6 +61,7 @@ class GamePresenter {
 
     return stats();
   }
+
 
 /*
   startTask() {
@@ -89,6 +93,7 @@ class GamePresenter {
 
     this.timer = setInterval(() => {
       if (!this.model.timeIsOver()) {
+        this.stopTimer();
         this.nextTask();
         return;
       }

@@ -5,7 +5,7 @@ import greeting from './view/greeting';
 import rules from './view/rules';
 import stats from './view/stats';
 
-import gamePresenter from './gamePresenter';
+import gamePresenter from './GamePresenter';
 
 export default class Application {
 
