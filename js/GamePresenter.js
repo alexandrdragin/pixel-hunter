@@ -60,12 +60,10 @@ class GamePresenter {
   }
 
   getContentGame() {
-    const node = gameScreen(
+    return gameScreen(
         this.model._state.questions[this.model._state.base.currentLevel].type,
         this.model._state.questions[this.model._state.base.currentLevel]
       );
-
-    return node;
   }
 
   startTimer() {
@@ -76,7 +74,7 @@ class GamePresenter {
     this.timers = setInterval(() => {
       if (!this.model.timeIsOver()) {
         this.stopTimer();
-        this.nextTask();
+        this.startGame();
         return;
       }
 
