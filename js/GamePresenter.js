@@ -17,10 +17,16 @@ class GamePresenter {
     this.header = null;
     this.content = null;
     this.model = GameModel;
+
+    this.levelAnswer = null;
+
+    this.model.updateLives(3);
   }
 
+
   startGame() {
-    if (!this.model._state.questions[this.model._state.base.currentLevel + 1]) {
+    if (!this.model._state.questions[this.model._state.base.currentLevel + 1]
+      || this.model._state.base.lives < 1) {
       this.endGame();
     } else {
       this.nextTask();
@@ -36,9 +42,9 @@ class GamePresenter {
     this.content = this.getContentGame();
     screenGame.appendChild(this.content);
 
-    this.model.updateLives(3);
-
     draw(screenGame);
+
+    this.levelAnswer = this.onAnswer.bind(this);
   }
 
   createHeader() {
@@ -74,6 +80,7 @@ class GamePresenter {
     this.timers = setInterval(() => {
       if (!this.model.timeIsOver()) {
         this.stopTimer();
+        this.model.updateLives(this.model._state.base.lives - 1);
         this.startGame();
         return;
       }
@@ -85,10 +92,26 @@ class GamePresenter {
 
   // //////////////////////////
 
-  onAnswer(time, answer) {
+  levelAnswer(answer) {
     this.stopTimer();
-    this.model.addAnswer(time, answer);
+    this.checkAnswer(answer);
     this.nextTask();
+  }
+
+  checkAnswer(answer) {
+    if (this.model._state.questions[this.model._state.base.currentLevel].correctAnswer === answer) {
+      this.rightAnswer(answer);
+    } else {
+      this.wrongAnswer();
+    }
+  }
+
+  wrongAnswer() {
+    this.model.updateLives(this.model._state.base.lives - 1);
+  }
+
+  rightAnswer(answer) {
+    this.model.addAnswer(this.model._state.base.timer, answer);
   }
 
   stopTimer() {
@@ -107,14 +130,13 @@ class GamePresenter {
     this.model.end();
 
 
-    let screenGame = getElementFromTemplate('');
+    let endGame = getElementFromTemplate('');
     this.header = this.createHeader();
-    screenGame.appendChild(this.header);
+    endGame.appendChild(this.header);
 
-    screenGame.appendChild(stats());
+    endGame.appendChild(stats());
 
-    draw(screenGame);
-
+    draw(endGame);
   }
 
   // вопрос ////////////////////////////

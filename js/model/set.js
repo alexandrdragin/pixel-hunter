@@ -34,11 +34,6 @@ export const setFinalResult = (result) => {
 };
 
 export const setLives = (game, lives) => {
-
-  if (lives < 1) {
-    throw new RangeError('end');
-  }
-
   let result = Object.assign({}, game);
   result.base.lives = lives;
   return result;

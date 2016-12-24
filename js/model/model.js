@@ -2,7 +2,7 @@ import questsData from '../data/questsData';
 import {setTime,
         setLives,
         setCurrentLevel,
-        checkAnswerSpeed
+        checkRightAnswerSpeed
 } from './set';
 
 class Model {
@@ -36,7 +36,7 @@ class Model {
   }
 
   resetTime() {
-    this._state = setTime(this._state, 30);
+    this._state = setTime(this._state, 10);
   }
 
   timeIsOver() {
@@ -48,7 +48,7 @@ class Model {
   }
 
   addAnswer(time, answer) {
-    this._state = checkAnswerSpeed(this._state, time, answer);
+    this._state = checkRightAnswerSpeed(this._state, time, answer);
   }
 
   end() {

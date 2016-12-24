@@ -33,7 +33,10 @@ export default (typeOfQuestion, question) => {
         default:
           throw new Error('sorry, wierd question');
       }
+    }
 
+    set sendAnswer(handler) {
+      this._sendAnswer = handler;
     }
 
     getMarkup() {
@@ -51,23 +54,38 @@ export default (typeOfQuestion, question) => {
       switch (answers.length) {
         case 0:
           answers = this.element.querySelectorAll('.game__option');
-          for (const answer of answers) {
-            answer.addEventListener('click', this.onClickPrev);
+          for (const item of answers) {
+            item.onclick = (event) => {
+              const answer = event.target;
+              if (answer.classList.contains('game__option--selected')) {
+                this._sendAnswer(answer.querySelector('img').alt);
+              } else {
+                this._sendAnswer(false);
+              }
+              this.onClick(event);
+            };
           }
           break;
         case 2:
-          for (const answer of answers) {
-            answer.addEventListener('click', this.onClickPrev);
+          for (const item of answers) {
+            item.onclick = (event) => {
+              event.preventDefault();
+              this._sendAnswer(event.target.parentElement.querySelector('input[type=radio]').value);
+              this.onClick(event);
+            };
           }
           break;
         case 4:
           for (const item of answers) {
             item.onclick = (event) => {
-              this.sendAnswer(event);
+
               event.preventDefault();
               event.currentTarget.querySelector('input[type=radio]').checked = true;
               const checkedAnswers = this.element.querySelectorAll('input[type=radio]:checked');
+
               if (checkedAnswers.length === 2) {
+                const answer = [checkedAnswers[0].value, checkedAnswers[1].value];
+                this._sendAnswer(answer);
                 this.onClick(event);
               }
             };
@@ -81,19 +99,9 @@ export default (typeOfQuestion, question) => {
     // вопрос  ///////////////////
     clearHandlers() {
       this.answer.removeEventListener('click', this.onClick);
-      this.answer.removeEventListener('click', this.onClickPrev);
     }
 
-    sendAnswer(evt) {
-      // console.log(evt.target.textContent);
-    }
-
-    onClick(evt) {
-      Application.showGame();
-    }
-
-    onClickPrev(evt) {
-      evt.preventDefault();
+    onClick() {
       Application.showGame();
     }
   }
