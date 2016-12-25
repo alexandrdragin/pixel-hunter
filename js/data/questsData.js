@@ -13,6 +13,7 @@ const questsData = {
     wrongAnswers: 0,
     fast: 0,
     slow: 0,
+    total: 0,
     result: ''
   },
 

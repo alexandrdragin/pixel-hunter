@@ -18,8 +18,6 @@ class GamePresenter {
     this.content = null;
     this.model = GameModel;
 
-    this.levelAnswer = null;
-
     this.model.updateLives(3);
   }
 
@@ -42,9 +40,11 @@ class GamePresenter {
     this.content = this.getContentGame();
     screenGame.appendChild(this.content);
 
-    draw(screenGame);
+    this.content.sendAnswer = this.sendAnswer.bind(this);
+    // this.content.sendAnswer = this.sendAnswer.bind(this);
+    // this.sendAnswer = this.sendAnswer.bind(this);
 
-    this.levelAnswer = this.onAnswer.bind(this);
+    draw(screenGame);
   }
 
   createHeader() {
@@ -90,20 +90,15 @@ class GamePresenter {
     }, 1000);
   }
 
-  // //////////////////////////
-
   levelAnswer(answer) {
     this.stopTimer();
-    this.checkAnswer(answer);
+    this.sendAnswer(answer);
     this.nextTask();
   }
 
-  checkAnswer(answer) {
-    if (this.model._state.questions[this.model._state.base.currentLevel].correctAnswer === answer) {
-      this.rightAnswer(answer);
-    } else {
-      this.wrongAnswer();
-    }
+  sendAnswer(answer) {
+    const isItCorrect = (this.model._state.questions[this.model._state.base.currentLevel].correctAnswer === answer);
+    isItCorrect ? this.rightAnswer(answer) : this.wrongAnswer();
   }
 
   wrongAnswer() {
@@ -121,14 +116,6 @@ class GamePresenter {
   endGame() {
     this.stopTimer();
     this.model.end();
-
-    return stats();
-  }
-
-  endGame() {
-    this.stopTimer();
-    this.model.end();
-
 
     let endGame = getElementFromTemplate('');
     this.header = this.createHeader();

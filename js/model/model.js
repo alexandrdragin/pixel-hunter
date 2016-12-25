@@ -2,7 +2,9 @@ import questsData from '../data/questsData';
 import {setTime,
         setLives,
         setCurrentLevel,
-        checkRightAnswerSpeed
+        checkRightAnswerSpeed,
+        setFinalResult,
+        getPoints
 } from './set';
 
 class Model {
@@ -52,8 +54,8 @@ class Model {
   }
 
   end() {
-  //  this._state = setFinalResult(this._state);
-    // this._state = getPoints(this._state);
+    this._state = getPoints(this._state);
+    this._state = setFinalResult(this._state);
   }
 
 }

@@ -22,15 +22,16 @@ export const getLevel = (game, currentLevel) => {
   return game.questions[`${currentLevel}`];
 };
 
-export const setFinalResult = (result) => {
-
-  if (result === null) {
-    throw new RangeError('wtf');
+export const setFinalResult = (game) => {
+  if (game.base.lives > 0) {
+    let result = Object.assign({}, game);
+    result.player.result = 'Еееееее!';
+    return result;
+  } else {
+    let result = Object.assign({}, game);
+    result.player.result = 'Пфффф(((';
+    return result;
   }
-
-  return Object.assign({}, {
-    player: {result: result}
-  });
 };
 
 export const setLives = (game, lives) => {
@@ -46,18 +47,11 @@ export const setCurrentLevel = (game, currentLevel) => {
   return result;
 };
 
-export const getPoints = (rightAnswers, fast, lives, slow) => {
-  return rightAnswers * 100 + fast * 50 + lives * 50
-  - slow * 50;
-};
-
-export const addAnswer = (data, answer) => {
-  let copyCat = data.answer.slice(0, data.answer.length);
-  copyCat.push(answer);
-
-  return Object.assign({}, data, {
-    answer: copyCat
-  });
+export const getPoints = (game) => {
+  let result = Object.assign({}, game);
+  result.player.total = result.player.rightAnswers * 100 + result.player.fast * 50 + result.base.lives * 50
+  - result.player.slow * 50;
+  return result;
 };
 
 export const checkAnswerSpeed = (data, time, answer) => {
@@ -67,6 +61,15 @@ export const checkAnswerSpeed = (data, time, answer) => {
   if (time > 20) {
     return addAnswer(data, answer + 'fast');
   } else {
-    return 'regular time';
+    return addAnswer(data, answer);
   }
+};
+
+export const addAnswer = (game, answer) => {
+  let copyCat = game.answer.slice(0, game.answer.length);
+  copyCat.push(answer);
+
+  let result = Object.assign({}, game);
+  result.answer = copyCat;
+  return result;
 };
