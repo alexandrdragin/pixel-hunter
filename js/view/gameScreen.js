@@ -43,7 +43,7 @@ export default class GameScreen extends AbstractView {
     return `
     <div class="game">
       ${this.questBlock}
-      ${new StatsBlock().getMarkup}
+      ${new StatsBlock().getMarkup()}
     </div>
     `;
   }
