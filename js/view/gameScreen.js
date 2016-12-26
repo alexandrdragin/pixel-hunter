@@ -5,10 +5,6 @@ import StatsBlock from './statsBlock.js';
 
 import {fillQuestionTypeEach, fillQuestionTypedrawOrPhoto, fillQuestionTypefindOne} from '../templates/fillQuestion.js';
 
-// в зависимости от типа вопроса погдрузка нужного шаблона
-// заполнение его данными
-// выгрузка полностью собранного экрана игры
-
 export default class GameScreen extends AbstractView {
   constructor(typeOfQuestion, question, sendAnswer) {
     super();
@@ -18,11 +14,6 @@ export default class GameScreen extends AbstractView {
     this.questBlock = [];
 
     this._sendAnswer = sendAnswer;
-  }
-
-  // нерабочий метод
-  set sendAnswer(handler) {
-    this._sendAnswer = handler;
   }
 
   getMarkup() {

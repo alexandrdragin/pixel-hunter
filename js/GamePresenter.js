@@ -12,7 +12,6 @@ import model from './model/model';
 class GamePresenter {
   constructor(GameModel) {
     this.timer = null;
-    this.timer = null;
     this.level = null;
     this.header = null;
     this.content = null;
@@ -62,10 +61,11 @@ class GamePresenter {
   }
 
   getContentGame() {
-    this.content = new GameScreen(this.model._state.questions[this.model._state.base.currentLevel].type,
-    this.model._state.questions[this.model._state.base.currentLevel],
-    this.sendAnswer.bind(this)
-    ).element;
+    this.content = new GameScreen(
+      this.model._state.questions[this.model._state.base.currentLevel].type,
+      this.model._state.questions[this.model._state.base.currentLevel],
+      this.sendAnswer.bind(this)
+      ).element;
 
     return this.content;
   }
@@ -85,6 +85,7 @@ class GamePresenter {
 
       this.model.tick();
       this.updateHeader();
+      this.bindHandlers();
     }, 1000);
   }
 
