@@ -1,7 +1,7 @@
 import AbstractView from './abstract-view';
 import Application from '../Application';
 
-import statsBlock from '../templates/statsBlock.js';
+import StatsBlock from './statsBlock.js';
 
 import {fillQuestionTypeEach, fillQuestionTypedrawOrPhoto, fillQuestionTypefindOne} from '../templates/fillQuestion.js';
 
@@ -43,7 +43,7 @@ export default class GameScreen extends AbstractView {
     return `
     <div class="game">
       ${this.questBlock}
-      ${statsBlock}
+      ${new StatsBlock().getMarkup}
     </div>
     `;
   }
