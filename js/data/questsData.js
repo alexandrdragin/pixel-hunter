@@ -25,7 +25,7 @@ const questsData = {
       questTask: 'Угадайте для каждого изображения фото или рисунок?',
       questOption1: 'http://placehold.it/468x458',
       questOption2: 'http://placehold.it/468x458',
-      correctAnswer: ['paint', 'photo']
+      correctAnswer: 'paint,photo'
     },
     {
       type: 'drawOrPhoto',
@@ -60,7 +60,7 @@ const questsData = {
       questTask: 'Угадайте для каждого изображения фото или рисунок?',
       questOption1: 'http://placehold.it/468x458',
       questOption2: 'http://placehold.it/468x458',
-      correctAnswer: ['paint', 'photo']
+      correctAnswer: 'paint,photo'
     },
     {
       type: 'drawOrPhoto',

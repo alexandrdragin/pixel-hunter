@@ -85,7 +85,7 @@ export default class GameScreen extends AbstractView {
 
             if (checkedAnswers.length === 2) {
               const answer = [checkedAnswers[0].value, checkedAnswers[1].value];
-              this._sendAnswer(answer);
+              this._sendAnswer(answer.toString());
               this.onClick(event);
             }
           };
