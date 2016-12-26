@@ -48,20 +48,51 @@ export const setCurrentLevel = (game, currentLevel) => {
 
 export const getPoints = (game) => {
   let result = Object.assign({}, game);
-  result.player.total = result.player.rightAnswers * 100 + result.player.fast * 50 + result.base.lives * 50
+  result.player.total = result.player.correct * 100 + result.player.fast * 50 + result.base.lives * 50
   - result.player.slow * 50;
   return result;
 };
 
 export const checkRightAnswerSpeed = (data, time, answer) => {
   if (time < 10) {
-    return addAnswer(data, answer + 'slow');
+    return setSlowAnswer(data);
   }
   if (time > 20) {
-    return addAnswer(data, answer + 'fast');
+    return setFastAnswer(data);
   } else {
-    return addAnswer(data, answer);
+    return setCorrectAnswer(data);
   }
+};
+
+export const setFastAnswer = (game) => {
+  let result = Object.assign({}, game);
+  result.player.fast = result.player.fast + 1;
+  return result;
+};
+
+export const setSlowAnswer = (game, unknownAnswer) => {
+  let result = Object.assign({}, game);
+  result.player.slow = result.player.slow + 1;
+  return result;
+};
+
+
+export const setUnknownAnswer = (game, unknownAnswer) => {
+  let result = Object.assign({}, game);
+  result.player.unknown = unknownAnswer;
+  return result;
+};
+
+export const setWrongAnswer = (game, wrongAnswer) => {
+  let result = Object.assign({}, game);
+  result.player.wrong = wrongAnswer;
+  return result;
+};
+
+export const setCorrectAnswer = (game) => {
+  let result = Object.assign({}, game);
+  result.player.correct = result.player.correct + 1;
+  return result;
 };
 
 export const addAnswer = (game, answer) => {

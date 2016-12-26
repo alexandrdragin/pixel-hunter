@@ -1,7 +1,7 @@
 import draw from './utils/draw';
 import getElementFromTemplate from './utils/getElementFromTemplate';
 
-import stats from './view/stats';
+import Stats from './view/stats';
 import GameScreen from './view/gameScreen.js';
 
 import Application from './Application';
@@ -78,7 +78,7 @@ class GamePresenter {
     this.timers = setInterval(() => {
       if (!this.model.timeIsOver()) {
         this.stopTimer();
-        this.model.updateLives(this.model._state.base.lives - 1);
+        this.unknownAnswer();
         this.startGame();
         return;
       }
@@ -99,8 +99,14 @@ class GamePresenter {
     isItCorrect ? this.rightAnswer(answer) : this.wrongAnswer();
   }
 
+  unknownAnswer() {
+    this.model.updateLives(this.model._state.base.lives - 1);
+    this.model.addUnknownAnswer();
+  }
+
   wrongAnswer() {
     this.model.updateLives(this.model._state.base.lives - 1);
+    this.model.addWrongAnswer();
   }
 
   rightAnswer(answer) {
@@ -119,7 +125,7 @@ class GamePresenter {
     this.header = this.createHeader();
     endGame.appendChild(this.header);
 
-    endGame.appendChild(stats());
+    endGame.appendChild(new Stats(this.model._state).element);
 
     draw(endGame);
   }

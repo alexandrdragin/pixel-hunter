@@ -4,7 +4,9 @@ import {setTime,
         setCurrentLevel,
         checkRightAnswerSpeed,
         setFinalResult,
-        getPoints
+        getPoints,
+        setUnknownAnswer,
+        setWrongAnswer
 } from './set';
 
 class Model {
@@ -38,7 +40,7 @@ class Model {
   }
 
   resetTime() {
-    this._state = setTime(this._state, 10);
+    this._state = setTime(this._state, 30);
   }
 
   timeIsOver() {
@@ -51,6 +53,14 @@ class Model {
 
   addAnswer(time, answer) {
     this._state = checkRightAnswerSpeed(this._state, time, answer);
+  }
+
+  addUnknownAnswer() {
+    this._state = setUnknownAnswer(this._state, this._state.player.unknown + 1);
+  }
+
+  addWrongAnswer() {
+    this._state = setWrongAnswer(this._state, this._state.player.wrong + 1);
   }
 
   end() {

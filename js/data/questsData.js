@@ -9,8 +9,9 @@ const questsData = {
 
 // для подсчета очков
   player: {
-    rightAnswers: 0,
-    wrongAnswers: 0,
+    correct: 0,
+    wrong: 0,
+    unknown: 0,
     fast: 0,
     slow: 0,
     total: 0,
