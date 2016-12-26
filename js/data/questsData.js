@@ -9,6 +9,7 @@ const questsData = {
 
 // для подсчета очков
   player: {
+    answer: 0,
     correct: 0,
     wrong: 0,
     unknown: 0,
@@ -80,6 +81,14 @@ const questsData = {
       questTask: 'Угадай, фото или рисунок',
       questOption1: 'http://placehold.it/705x455',
       correctAnswer: 'paint'
+    },
+    {
+      type: 'findOne',
+      questTask: 'Найдите рисунок среди изображений',
+      questOption1: 'http://placehold.it/304x455',
+      questOption2: 'http://placehold.it/304x455',
+      questOption3: 'http://placehold.it/304x455',
+      correctAnswer: 'Option 2'
     },
   ]
 };

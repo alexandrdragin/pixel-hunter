@@ -48,7 +48,7 @@ export const setCurrentLevel = (game, currentLevel) => {
 
 export const getPoints = (game) => {
   let result = Object.assign({}, game);
-  result.player.total = result.player.correct * 100 + result.player.fast * 50 + result.base.lives * 50
+  result.player.total = result.player.answer * 100 + result.player.fast * 50 + result.base.lives * 50
   - result.player.slow * 50;
   return result;
 };
@@ -64,6 +64,12 @@ export const checkRightAnswerSpeed = (data, time, answer) => {
   }
 };
 
+export const setAnswer = (game) => {
+  let result = Object.assign({}, game);
+  result.player.answer = result.player.answer + 1;
+  return result;
+};
+
 export const setFastAnswer = (game) => {
   let result = Object.assign({}, game);
   result.player.fast = result.player.fast + 1;
@@ -75,7 +81,6 @@ export const setSlowAnswer = (game, unknownAnswer) => {
   result.player.slow = result.player.slow + 1;
   return result;
 };
-
 
 export const setUnknownAnswer = (game, unknownAnswer) => {
   let result = Object.assign({}, game);

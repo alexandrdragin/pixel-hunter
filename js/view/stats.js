@@ -6,10 +6,12 @@ export default class Stats extends AbstractView {
     super();
     this.data = data;
 
+    console.log(this.data);
+
     const score1 = {
       number: '1.',
       points: '×&nbsp;100',
-      total: `${this.data.player.total}`,
+      total: `${this.data.player.answer}` * 100,
       bonus1: {
         forWhat: 'Бонус за скорость:',
         extra: `${this.data.player.fast}&nbsp;`,
