@@ -7,7 +7,8 @@ import {setTime,
         getPoints,
         setAnswer,
         setUnknownAnswer,
-        setWrongAnswer
+        setWrongAnswer,
+        sliceAnswer
 } from './set';
 
 class Model {
@@ -55,6 +56,7 @@ class Model {
   addAnswer(time, answer) {
     this._state = checkRightAnswerSpeed(this._state, time, answer);
     this._state = setAnswer(this._state);
+    this._state = sliceAnswer(this._state, answer);
   }
 
   addUnknownAnswer() {
@@ -69,7 +71,6 @@ class Model {
     this._state = getPoints(this._state);
     this._state = setFinalResult(this._state);
   }
-
 }
 
 export default new Model();

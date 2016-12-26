@@ -100,7 +100,7 @@ export const setCorrectAnswer = (game) => {
   return result;
 };
 
-export const addAnswer = (game, answer) => {
+export const sliceAnswer = (game, answer) => {
   let copyCat = game.answer.slice(0, game.answer.length);
   copyCat.push(answer);
 

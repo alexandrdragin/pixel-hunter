@@ -6,8 +6,6 @@ export default class Stats extends AbstractView {
     super();
     this.data = data;
 
-    console.log(this.data);
-
     const score1 = {
       number: '1.',
       points: '×&nbsp;100',
