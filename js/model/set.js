@@ -41,7 +41,6 @@ export const setLives = (game, lives) => {
 };
 
 export const setCurrentLevel = (game, currentLevel) => {
-
   let result = Object.assign({}, game);
   result.base.currentLevel = currentLevel;
   return result;

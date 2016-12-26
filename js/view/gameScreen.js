@@ -9,102 +9,98 @@ import {fillQuestionTypeEach, fillQuestionTypedrawOrPhoto, fillQuestionTypefindO
 // заполнение его данными
 // выгрузка полностью собранного экрана игры
 
-export default (typeOfQuestion, question) => {
+export default class GameScreen extends AbstractView {
+  constructor(typeOfQuestion, question) {
+    super();
+    this.typeOfQuestion = typeOfQuestion;
+    this.question = question;
 
-  class GameScreen extends AbstractView {
-    constructor(data) {
-      super();
-      this.data = data;
+    this.questBlock = [];
 
-      this.questBlock = [];
+    this.answer = null;
+  }
 
-      this.answer = null;
+  set sendAnswer(handler) {
+    this._sendAnswer = handler;
+  }
 
-      switch (typeOfQuestion) {
-        case 'each':
-          this.questBlock = fillQuestionTypeEach(question);
-          break;
-        case 'drawOrPhoto':
-          this.questBlock = fillQuestionTypedrawOrPhoto(question);
-          break;
-        case 'findOne':
-          this.questBlock = fillQuestionTypefindOne(question);
-          break;
-        default:
-          throw new Error('sorry, wierd question');
-      }
+  getMarkup() {
+    switch (this.typeOfQuestion) {
+      case 'each':
+        this.questBlock = fillQuestionTypeEach(this.question);
+        break;
+      case 'drawOrPhoto':
+        this.questBlock = fillQuestionTypedrawOrPhoto(this.question);
+        break;
+      case 'findOne':
+        this.questBlock = fillQuestionTypefindOne(this.question);
+        break;
+      default:
+        throw new Error('sorry, wierd question');
     }
 
-    set sendAnswer(handler) {
-      this._sendAnswer = handler;
-    }
+    return `
+    <div class="game">
+      ${this.questBlock}
+      ${statsBlock}
+    </div>
+    `;
+  }
 
-    getMarkup() {
-      return `
-      <div class="game">
-        ${this.questBlock}
-        ${statsBlock}
-      </div>
-      `;
-    }
+  bindHandlers() {
+    let answers = this.element.querySelectorAll('.game__answer');
 
-    bindHandlers() {
-      let answers = this.element.querySelectorAll('.game__answer');
+    switch (answers.length) {
+      case 0:
+        answers = this.element.querySelectorAll('.game__option');
+        for (const item of answers) {
+          item.onclick = (event) => {
+            const answer = event.target;
+            if (answer.classList.contains('game__option--selected')) {
+              this._sendAnswer(answer.querySelector('img').alt);
+            } else {
+              this._sendAnswer(false);
+            }
+            this.onClick(event);
+          };
+        }
+        break;
+      case 2:
+        for (const item of answers) {
+          item.onclick = (event) => {
+            event.preventDefault();
+            this._sendAnswer(event.target.parentElement.querySelector('input[type=radio]').value);
+            this.onClick(event);
+          };
+        }
+        break;
+      case 4:
+        for (const item of answers) {
+          item.onclick = (event) => {
 
-      switch (answers.length) {
-        case 0:
-          answers = this.element.querySelectorAll('.game__option');
-          for (const item of answers) {
-            item.onclick = (event) => {
-              const answer = event.target;
-              if (answer.classList.contains('game__option--selected')) {
-                this._sendAnswer(answer.querySelector('img').alt);
-              } else {
-                this._sendAnswer(false);
-              }
+            event.preventDefault();
+            event.currentTarget.querySelector('input[type=radio]').checked = true;
+            const checkedAnswers = this.element.querySelectorAll('input[type=radio]:checked');
+
+            if (checkedAnswers.length === 2) {
+              const answer = [checkedAnswers[0].value, checkedAnswers[1].value];
+              this._sendAnswer(answer);
               this.onClick(event);
-            };
-          }
-          break;
-        case 2:
-          for (const item of answers) {
-            item.onclick = (event) => {
-              event.preventDefault();
-              this._sendAnswer(event.target.parentElement.querySelector('input[type=radio]').value);
-              this.onClick(event);
-            };
-          }
-          break;
-        case 4:
-          for (const item of answers) {
-            item.onclick = (event) => {
-
-              event.preventDefault();
-              event.currentTarget.querySelector('input[type=radio]').checked = true;
-              const checkedAnswers = this.element.querySelectorAll('input[type=radio]:checked');
-
-              if (checkedAnswers.length === 2) {
-                const answer = [checkedAnswers[0].value, checkedAnswers[1].value];
-                this._sendAnswer(answer);
-                this.onClick(event);
-              }
-            };
-          }
-          break;
-        default:
-          throw new Error('wtf');
-      }
-    }
-
-    // вопрос  ///////////////////
-    clearHandlers() {
-      this.answer.removeEventListener('click', this.onClick);
-    }
-
-    onClick() {
-      Application.showGame();
+            }
+          };
+        }
+        break;
+      default:
+        throw new Error('wtf');
     }
   }
 
-  return new GameScreen().element;
-};
+  // вопрос  ///////////////////
+  clearHandlers() {
+    this.answer.removeEventListener('click', this.onClick);
+  }
+
+  onClick() {
+    Application.showGame();
+  }
+}

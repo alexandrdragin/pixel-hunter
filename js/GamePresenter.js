@@ -2,7 +2,7 @@ import draw from './utils/draw';
 import getElementFromTemplate from './utils/getElementFromTemplate';
 
 import stats from './view/stats';
-import gameScreen from './view/gameScreen.js';
+import GameScreen from './view/gameScreen.js';
 
 import Application from './Application';
 import Header from './view/header';
@@ -40,10 +40,6 @@ class GamePresenter {
     this.content = this.getContentGame();
     screenGame.appendChild(this.content);
 
-    this.content.sendAnswer = this.sendAnswer.bind(this);
-    // this.content.sendAnswer = this.sendAnswer.bind(this);
-    // this.sendAnswer = this.sendAnswer.bind(this);
-
     draw(screenGame);
   }
 
@@ -66,10 +62,11 @@ class GamePresenter {
   }
 
   getContentGame() {
-    return gameScreen(
-        this.model._state.questions[this.model._state.base.currentLevel].type,
-        this.model._state.questions[this.model._state.base.currentLevel]
-      );
+    this.content = new GameScreen(this.model._state.questions[this.model._state.base.currentLevel].type,
+    this.model._state.questions[this.model._state.base.currentLevel]).element;
+
+    this.content.sendAnswer = this.sendAnswer.bind(this);
+    return this.content;
   }
 
   startTimer() {
