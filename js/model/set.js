@@ -53,7 +53,7 @@ export const getPoints = (game) => {
   return result;
 };
 
-export const checkAnswerSpeed = (data, time, answer) => {
+export const checkRightAnswerSpeed = (data, time, answer) => {
   if (time < 10) {
     return addAnswer(data, answer + 'slow');
   }

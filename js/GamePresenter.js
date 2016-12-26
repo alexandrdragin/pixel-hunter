@@ -63,9 +63,10 @@ class GamePresenter {
 
   getContentGame() {
     this.content = new GameScreen(this.model._state.questions[this.model._state.base.currentLevel].type,
-    this.model._state.questions[this.model._state.base.currentLevel]).element;
+    this.model._state.questions[this.model._state.base.currentLevel],
+    this.sendAnswer.bind(this)
+    ).element;
 
-    this.content.sendAnswer = this.sendAnswer.bind(this);
     return this.content;
   }
 
@@ -94,7 +95,7 @@ class GamePresenter {
   }
 
   sendAnswer(answer) {
-    const isItCorrect = (this.model._state.questions[this.model._state.base.currentLevel].correctAnswer === answer);
+    const isItCorrect = (this.model._state.questions[this.model._state.base.currentLevel - 1].correctAnswer === answer);
     isItCorrect ? this.rightAnswer(answer) : this.wrongAnswer();
   }
 

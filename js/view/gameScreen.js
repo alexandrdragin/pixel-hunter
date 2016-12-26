@@ -10,16 +10,17 @@ import {fillQuestionTypeEach, fillQuestionTypedrawOrPhoto, fillQuestionTypefindO
 // выгрузка полностью собранного экрана игры
 
 export default class GameScreen extends AbstractView {
-  constructor(typeOfQuestion, question) {
+  constructor(typeOfQuestion, question, sendAnswer) {
     super();
     this.typeOfQuestion = typeOfQuestion;
     this.question = question;
 
     this.questBlock = [];
 
-    this.answer = null;
+    this._sendAnswer = sendAnswer;
   }
 
+  // нерабочий метод
   set sendAnswer(handler) {
     this._sendAnswer = handler;
   }
