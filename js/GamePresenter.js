@@ -96,7 +96,11 @@ class GamePresenter {
 
   sendAnswer(answer) {
     const isItCorrect = (this.model._state.questions[this.model._state.base.currentLevel - 1].correctAnswer === answer);
-    isItCorrect ? this.rightAnswer(answer) : this.wrongAnswer();
+    if (isItCorrect) {
+      this.rightAnswer(answer);
+    } else {
+      this.wrongAnswer();
+    }
   }
 
   unknownAnswer() {
