@@ -14,9 +14,10 @@ import {setTime,
 } from './set';
 
 class Model {
-  constructor(state = questsData) {
-    this._state = state;
-    // вопрос
+  constructor(state) {
+    console.log("state Model", state);
+    this._state = questsData;
+    this._state.questions = state;
   }
 
   reset() {
@@ -87,4 +88,4 @@ class Model {
   }
 }
 
-export default new Model();
+export default Model;

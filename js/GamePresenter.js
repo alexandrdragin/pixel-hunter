@@ -8,21 +8,26 @@ import Application from './Application';
 import Header from './view/header';
 import loadImages from './utils/loader.js';
 
-import model from './model/model';
+import Model from './model/model';
 
 class GamePresenter {
   constructor(gameData) {
+
+    console.log('gameData GamePresenter', gameData);
     this.timer = null;
     this.level = null;
     this.header = null;
     this.content = null;
-    this.model = gameData;
+    this.model = new Model(gameData);
+
+    console.log('this.model', this.model);
 
     this.model.updateLives(3);
   }
 
 
   startGame() {
+    console.log("this.model._state", this.model._state);
     if (!this.model._state.questions[this.model._state.base.currentLevel]
       || this.model._state.base.lives < 1) {
       this.endGame();
@@ -160,6 +165,6 @@ class GamePresenter {
   }
 }
 
-const gamePresenter = new GamePresenter(model);
+const gamePresenter = new GamePresenter(new Model());
 
 export default () => gamePresenter.startGame();
