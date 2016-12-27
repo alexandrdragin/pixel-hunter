@@ -136,17 +136,16 @@ class GamePresenter {
     draw(endGame);
   }
 
-  // вопрос ////////////////////////////
   bindHandlers() {
-    // this._element.querySelector('.header__back').addEventListener('click', this.onClick);
+    this.header.querySelector('.header__back').addEventListener('click', this.onClick);
 
-    // this.element.querySelector('.header__back').addEventListener('click', () => {
-    //  Application.showGreeting();
-  //  });
+    this.header.querySelector('.header__back').addEventListener('click', () => {
+      Application.showGreeting();
+    });
   }
 
   clearHandlers() {
-    this._element.querySelector('.header__back').removeEventListener('click', this.onClick);
+    this.header.querySelector('.header__back').removeEventListener('click', this.onClick);
   }
 
   onClick() {

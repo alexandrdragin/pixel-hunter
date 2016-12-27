@@ -63,7 +63,8 @@ class Model {
     if (time > 20) {
       this._state = sliceAnswer(this._state, 'fast');
       this._state = setFastAnswer(this._state, this._state.player.fast + 1);
-    } else {
+    }
+    if (time > 10 && time < 20) {
       this._state = sliceAnswer(this._state, 'correct');
       this._state = setCorrectAnswer(this._state, this._state.player.correct + 1);
     }
