@@ -10,15 +10,20 @@ import {setTime,
         setWrongAnswer,
         setFastAnswer,
         setCorrectAnswer,
-        sliceAnswer
+        sliceAnswer,
+        setQuestionsList
 } from './set';
 
 class Model {
   constructor(state) {
-    console.log("state Model", state);
+    console.log('state Model', state);
     this._state = questsData;
-    this._state.questions = state;
   }
+
+  loadQuestionsList(state) {
+    this._state = setQuestionsList(this._state, state);
+  }
+
 
   reset() {
     this._state = questsData;

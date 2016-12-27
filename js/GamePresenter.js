@@ -22,9 +22,10 @@ class GamePresenter {
 
     console.log('this.model', this.model);
 
+    this.model.loadQuestionsList(gameData);
+
     this.model.updateLives(3);
   }
-
 
   startGame() {
     console.log("this.model._state", this.model._state);
