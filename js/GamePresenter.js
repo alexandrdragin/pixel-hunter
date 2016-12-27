@@ -6,16 +6,17 @@ import GameScreen from './view/gameScreen.js';
 
 import Application from './Application';
 import Header from './view/header';
+import loadImages from './utils/loader.js';
 
 import model from './model/model';
 
 class GamePresenter {
-  constructor(GameModel) {
+  constructor(gameData) {
     this.timer = null;
     this.level = null;
     this.header = null;
     this.content = null;
-    this.model = GameModel;
+    this.model = gameData;
 
     this.model.updateLives(3);
   }
@@ -86,7 +87,7 @@ class GamePresenter {
 
       this.model.tick();
       this.updateHeader();
-      this.bindHandlers();
+      this.bindBackHandlers();
     }, 1000);
   }
 
@@ -97,7 +98,9 @@ class GamePresenter {
   }
 
   sendAnswer(answer) {
-    const isItCorrect = (this.model._state.questions[this.model._state.base.currentLevel - 1].correctAnswer === answer);
+    console.log(answer);
+    console.log(this.model._state.questions[this.model._state.base.currentLevel - 1].answers[0].type);
+    const isItCorrect = (this.model._state.questions[this.model._state.base.currentLevel - 1].answers[0].type === answer);
     if (isItCorrect) {
       this.rightAnswer(answer);
     } else {
@@ -136,12 +139,16 @@ class GamePresenter {
     draw(endGame);
   }
 
-  bindHandlers() {
+  bindBackHandlers() {
     this.header.querySelector('.header__back').addEventListener('click', this.onClick);
 
     this.header.querySelector('.header__back').addEventListener('click', () => {
       Application.showGreeting();
     });
+  }
+
+  bindHandlers() {
+    loadImages(this._element.querySelectorAll('.game__content img'), this._data.answers);
   }
 
   clearHandlers() {

@@ -19,13 +19,13 @@ export default class GameScreen extends AbstractView {
 
   getMarkup() {
     switch (this.typeOfQuestion) {
-      case 'each':
+      case 'two-of-two':
         this.questBlock = fillQuestionTypeEach(this.question);
         break;
-      case 'drawOrPhoto':
+      case 'tinder-like':
         this.questBlock = fillQuestionTypedrawOrPhoto(this.question);
         break;
-      case 'findOne':
+      case 'one-of-three':
         this.questBlock = fillQuestionTypefindOne(this.question);
         break;
       default:

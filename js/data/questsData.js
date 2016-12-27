@@ -21,74 +21,224 @@ const questsData = {
 
   questions: [
     {
-      type: 'each',
-      questTask: 'Угадайте для каждого изображения фото или рисунок?',
-      questOption1: 'http://placehold.it/468x458',
-      questOption2: 'http://placehold.it/468x458',
-      correctAnswer: 'paint,photo'
+      type: 'two-of-two',
+      question: 'Угадайте для каждого изображения фото или рисунок?',
+      answers: [
+        {
+          image: {
+            url: 'http://placehold.it/468x458',
+            width: 468,
+            height: 458
+          },
+          type: 'photo'
+        },
+        {
+          image: {
+            url: 'http://placehold.it/468x458',
+            width: 468,
+            height: 458
+          },
+          type: 'painting'
+        }
+      ],
     },
     {
-      type: 'drawOrPhoto',
-      questTask: 'Угадай, фото или рисунок',
-      questOption1: 'http://placehold.it/705x455',
-      correctAnswer: 'paint'
+      type: 'tinder-like',
+      question: 'Угадай, фото или рисунок?',
+      answers: [
+        {
+          image: {
+            url: 'http://placehold.it/705x455',
+            width: 705,
+            height: 455
+          },
+          type: 'photo'
+        }
+      ]
     },
     {
-      type: 'findOne',
-      questTask: 'Найдите рисунок среди изображений',
-      questOption1: 'http://placehold.it/304x455',
-      questOption2: 'http://placehold.it/304x455',
-      questOption3: 'http://placehold.it/304x455',
-      correctAnswer: 'Option 2'
+      type: 'one-of-three',
+      question: 'Найдите рисунок среди изображений',
+      answers: [
+        {
+          'image': {
+            'url': 'http://placehold.it/304x455',
+            'width': 304,
+            'height': 455
+          },
+          'type': 'photo'
+        },
+        {
+          'image': {
+            'url': 'http://placehold.it/304x455',
+            'width': 304,
+            'height': 455
+          },
+          'type': 'painting'
+        },
+        {
+          'image': {
+            'url': 'http://placehold.it/304x455',
+            'width': 304,
+            'height': 455
+          },
+          'type': 'photo'
+        }
+      ]
     },
     {
-      type: 'findOne',
-      questTask: 'Найдите рисунок среди изображений',
-      questOption1: 'http://placehold.it/304x455',
-      questOption2: 'http://placehold.it/304x455',
-      questOption3: 'http://placehold.it/304x455',
-      correctAnswer: 'Option 2'
+      type: 'one-of-three',
+      question: 'Найдите рисунок среди изображений',
+      answers: [
+        {
+          'image': {
+            'url': 'http://placehold.it/304x455',
+            'width': 304,
+            'height': 455
+          },
+          'type': 'photo'
+        },
+        {
+          'image': {
+            'url': 'http://placehold.it/304x455',
+            'width': 304,
+            'height': 455
+          },
+          'type': 'painting'
+        },
+        {
+          'image': {
+            'url': 'http://placehold.it/304x455',
+            'width': 304,
+            'height': 455
+          },
+          'type': 'photo'
+        }
+      ]
     },
     {
-      type: 'drawOrPhoto',
-      questTask: 'Угадай, фото или рисунок',
-      questOption1: 'http://placehold.it/705x455',
-      correctAnswer: 'paint'
+      type: 'tinder-like',
+      question: 'Угадай, фото или рисунок?',
+      answers: [
+        {
+          image: {
+            url: 'http://placehold.it/705x455',
+            width: 705,
+            height: 455
+          },
+          type: 'photo'
+        }
+      ]
     },
     {
-      type: 'each',
-      questTask: 'Угадайте для каждого изображения фото или рисунок?',
-      questOption1: 'http://placehold.it/468x458',
-      questOption2: 'http://placehold.it/468x458',
-      correctAnswer: 'paint,photo'
+      type: 'two-of-two',
+      question: 'Угадайте для каждого изображения фото или рисунок?',
+      answers: [
+        {
+          image: {
+            url: 'http://placehold.it/468x458',
+            width: 468,
+            height: 458
+          },
+          type: 'photo'
+        },
+        {
+          image: {
+            url: 'http://placehold.it/468x458',
+            width: 468,
+            height: 458
+          },
+          type: 'painting'
+        }
+      ],
     },
     {
-      type: 'drawOrPhoto',
-      questTask: 'Угадай, фото или рисунок',
-      questOption1: 'http://placehold.it/705x455',
-      correctAnswer: 'paint'
+      type: 'tinder-like',
+      question: 'Угадай, фото или рисунок?',
+      answers: [
+        {
+          image: {
+            url: 'http://placehold.it/705x455',
+            width: 705,
+            height: 455
+          },
+          type: 'photo'
+        }
+      ]
     },
     {
-      type: 'findOne',
-      questTask: 'Найдите рисунок среди изображений',
-      questOption1: 'http://placehold.it/304x455',
-      questOption2: 'http://placehold.it/304x455',
-      questOption3: 'http://placehold.it/304x455',
-      correctAnswer: 'Option 2'
+      type: 'one-of-three',
+      question: 'Найдите рисунок среди изображений',
+      answers: [
+        {
+          'image': {
+            'url': 'http://placehold.it/304x455',
+            'width': 304,
+            'height': 455
+          },
+          'type': 'photo'
+        },
+        {
+          'image': {
+            'url': 'http://placehold.it/304x455',
+            'width': 304,
+            'height': 455
+          },
+          'type': 'painting'
+        },
+        {
+          'image': {
+            'url': 'http://placehold.it/304x455',
+            'width': 304,
+            'height': 455
+          },
+          'type': 'photo'
+        }
+      ]
     },
     {
-      type: 'drawOrPhoto',
-      questTask: 'Угадай, фото или рисунок',
-      questOption1: 'http://placehold.it/705x455',
-      correctAnswer: 'paint'
+      type: 'tinder-like',
+      question: 'Угадай, фото или рисунок?',
+      answers: [
+        {
+          image: {
+            url: 'http://placehold.it/705x455',
+            width: 705,
+            height: 455
+          },
+          type: 'photo'
+        }
+      ]
     },
     {
-      type: 'findOne',
-      questTask: 'Найдите рисунок среди изображений',
-      questOption1: 'http://placehold.it/304x455',
-      questOption2: 'http://placehold.it/304x455',
-      questOption3: 'http://placehold.it/304x455',
-      correctAnswer: 'Option 2'
+      type: 'one-of-three',
+      question: 'Найдите рисунок среди изображений',
+      answers: [
+        {
+          'image': {
+            'url': 'http://placehold.it/304x455',
+            'width': 304,
+            'height': 455
+          },
+          'type': 'photo'
+        },
+        {
+          'image': {
+            'url': 'http://placehold.it/304x455',
+            'width': 304,
+            'height': 455
+          },
+          'type': 'painting'
+        },
+        {
+          'image': {
+            'url': 'http://placehold.it/304x455',
+            'width': 304,
+            'height': 455
+          },
+          'type': 'photo'
+        }
+      ]
     },
   ]
 };
