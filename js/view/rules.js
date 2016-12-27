@@ -1,11 +1,9 @@
-import AbstractView from '../abstract-view';
-
-import greeting from './greeting';
-import startGame from './startGame';
-
-import draw from '../draw';
-
+import AbstractView from './abstract-view';
 import Header from './header';
+
+import Application from '../Application';
+
+import questsData from '../data/questsData';
 
 export default () => {
 
@@ -14,7 +12,7 @@ export default () => {
       super();
       this.data = data;
 
-      this.header = new Header();
+      this.header = new Header(questsData);
     }
 
     getMarkup() {
@@ -53,11 +51,11 @@ export default () => {
       this.rulesSubmit = this.element.querySelector('.rules__button');
       this.rulesSubmit.addEventListener('click', (evt) => {
         evt.preventDefault();
-        draw(startGame());
+        Application.showGame();
       });
 
       this.element.querySelector('.header__back').addEventListener('click', () => {
-        draw(greeting());
+        Application.showGreeting();
       });
 
       this.element.querySelector('.rules__input').oninput = (evt) => {
@@ -75,11 +73,12 @@ export default () => {
 
     onClick(evt) {
       evt.preventDefault();
-      draw(startGame());
+      Application.showGame();
     }
 
+    // вопрос
     focus() {
-      this.element.querySelector('.rules__input').focus();
+      this._element.querySelector('.rules__input').focus();
     }
  }
   return new Rules().element;
