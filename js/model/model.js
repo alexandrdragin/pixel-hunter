@@ -2,12 +2,14 @@ import questsData from '../data/questsData';
 import {setTime,
         setLives,
         setCurrentLevel,
-        checkRightAnswerSpeed,
         setFinalResult,
         getPoints,
         setAnswer,
+        setSlowAnswer,
         setUnknownAnswer,
         setWrongAnswer,
+        setFastAnswer,
+        setCorrectAnswer,
         sliceAnswer
 } from './set';
 
@@ -54,17 +56,28 @@ class Model {
   }
 
   addAnswer(time, answer) {
-    this._state = checkRightAnswerSpeed(this._state, time, answer);
+    if (time < 10) {
+      this._state = sliceAnswer(this._state, 'slow');
+      this._state = setSlowAnswer(this._state, this._state.player.slow + 1);
+    }
+    if (time > 20) {
+      this._state = sliceAnswer(this._state, 'fast');
+      this._state = setFastAnswer(this._state, this._state.player.fast + 1);
+    } else {
+      this._state = sliceAnswer(this._state, 'correct');
+      this._state = setCorrectAnswer(this._state, this._state.player.correct + 1);
+    }
     this._state = setAnswer(this._state);
-    this._state = sliceAnswer(this._state, answer);
   }
 
   addUnknownAnswer() {
     this._state = setUnknownAnswer(this._state, this._state.player.unknown + 1);
+    this._state = sliceAnswer(this._state, 'unknown');
   }
 
   addWrongAnswer() {
     this._state = setWrongAnswer(this._state, this._state.player.wrong + 1);
+    this._state = sliceAnswer(this._state, 'wrong');
   }
 
   end() {

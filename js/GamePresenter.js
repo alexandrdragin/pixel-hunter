@@ -22,7 +22,7 @@ class GamePresenter {
 
 
   startGame() {
-    if (!this.model._state.questions[this.model._state.base.currentLevel + 1]
+    if (!this.model._state.questions[this.model._state.base.currentLevel]
       || this.model._state.base.lives < 1) {
       this.endGame();
     } else {
@@ -64,6 +64,7 @@ class GamePresenter {
     this.content = new GameScreen(
       this.model._state.questions[this.model._state.base.currentLevel].type,
       this.model._state.questions[this.model._state.base.currentLevel],
+      this.model._state.answer,
       this.sendAnswer.bind(this)
       ).element;
 
@@ -137,11 +138,11 @@ class GamePresenter {
 
   // вопрос ////////////////////////////
   bindHandlers() {
-    this._element.querySelector('.header__back').addEventListener('click', this.onClick);
+    // this._element.querySelector('.header__back').addEventListener('click', this.onClick);
 
-    this.element.querySelector('.header__back').addEventListener('click', () => {
-      Application.showGreeting();
-    });
+    // this.element.querySelector('.header__back').addEventListener('click', () => {
+    //  Application.showGreeting();
+  //  });
   }
 
   clearHandlers() {

@@ -37,16 +37,7 @@ export default class Stats extends AbstractView {
         <td class="resultNumber">${score1.number}</td>
         <td colspan="2">
           <ul class="stats">
-            <li class="stats__result stats__result--wrong"></li>
-            <li class="stats__result stats__result--slow"></li>
-            <li class="stats__result stats__result--fast"></li>
-            <li class="stats__result stats__result--correct"></li>
-            <li class="stats__result stats__result--wrong"></li>
-            <li class="stats__result stats__result--unknown"></li>
-            <li class="stats__result stats__result--slow"></li>
-            <li class="stats__result stats__result--unknown"></li>
-            <li class="stats__result stats__result--fast"></li>
-            <li class="stats__result stats__result--unknown"></li>
+            ${this.data.answer.map((item)=>`<li class="stats__result stats__result--${item}"></li>`).join('')}
           </ul>
         </td>
         <td class="resultPoints">${score1.points}</td>

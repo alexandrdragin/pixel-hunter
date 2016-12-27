@@ -6,10 +6,11 @@ import StatsBlock from './statsBlock.js';
 import {fillQuestionTypeEach, fillQuestionTypedrawOrPhoto, fillQuestionTypefindOne} from '../templates/fillQuestion.js';
 
 export default class GameScreen extends AbstractView {
-  constructor(typeOfQuestion, question, sendAnswer) {
+  constructor(typeOfQuestion, question, answer, sendAnswer) {
     super();
     this.typeOfQuestion = typeOfQuestion;
     this.question = question;
+    this.answer = answer;
 
     this.questBlock = [];
 
@@ -34,7 +35,7 @@ export default class GameScreen extends AbstractView {
     return `
     <div class="game">
       ${this.questBlock}
-      ${new StatsBlock().getMarkup()}
+      ${new StatsBlock(this.answer).getMarkup()}
     </div>
     `;
   }

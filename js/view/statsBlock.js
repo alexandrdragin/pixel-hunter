@@ -1,25 +1,16 @@
 import AbstractView from './abstract-view';
 
 export default class StatsBlock extends AbstractView {
-  constructor(data) {
+  constructor(answer) {
     super();
-    this.data = data;
+    this.data = answer;
   }
 
   getMarkup() {
     return `
     <div class="stats">
       <ul class="stats">
-        <li class="stats__result stats__result--wrong"></li>
-        <li class="stats__result stats__result--slow"></li>
-        <li class="stats__result stats__result--fast"></li>
-        <li class="stats__result stats__result--correct"></li>
-        <li class="stats__result stats__result--wrong"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--slow"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--fast"></li>
-        <li class="stats__result stats__result--unknown"></li>
+          ${this.data.map((item)=>`<li class="stats__result stats__result--${item}"></li>`).join('')}
       </ul>
     </div>
         `;
