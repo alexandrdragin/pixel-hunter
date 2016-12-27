@@ -39,7 +39,5 @@ export default class Application {
 
   static set data(data) {
     gameData = data;
-
-    console.log('set gameData', gameData);
   }
 }

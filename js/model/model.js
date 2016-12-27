@@ -16,14 +16,21 @@ import {setTime,
 
 class Model {
   constructor(state) {
-    console.log('state Model', state);
     this._state = questsData;
+    this._state.questions = state;
+
+    console.log(state);
+
+    console.log(this._state.questions);
+
+    setQuestionsList(this._state, state);
+
+    console.log(this._state);
   }
 
   loadQuestionsList(state) {
     this._state = setQuestionsList(this._state, state);
   }
-
 
   reset() {
     this._state = questsData;

@@ -12,15 +12,13 @@ import Model from './model/model';
 
 class GamePresenter {
   constructor(gameData) {
-
-    console.log('gameData GamePresenter', gameData);
     this.timer = null;
     this.level = null;
     this.header = null;
     this.content = null;
-    this.model = new Model(gameData);
+    this.model = gameData;
 
-    console.log('this.model', this.model);
+    console.log(this.model);
 
     this.model.loadQuestionsList(gameData);
 
@@ -28,7 +26,6 @@ class GamePresenter {
   }
 
   startGame() {
-    console.log("this.model._state", this.model._state);
     if (!this.model._state.questions[this.model._state.base.currentLevel]
       || this.model._state.base.lives < 1) {
       this.endGame();
@@ -104,8 +101,6 @@ class GamePresenter {
   }
 
   sendAnswer(answer) {
-    console.log(answer);
-    console.log(this.model._state.questions[this.model._state.base.currentLevel - 1].answers[0].type);
     const isItCorrect = (this.model._state.questions[this.model._state.base.currentLevel - 1].answers[0].type === answer);
     if (isItCorrect) {
       this.rightAnswer(answer);
@@ -166,6 +161,7 @@ class GamePresenter {
   }
 }
 
-const gamePresenter = new GamePresenter(new Model());
-
-export default () => gamePresenter.startGame();
+export default (gameData) => {
+  const gamePresenter = new GamePresenter(new Model(gameData));
+  gamePresenter.startGame();
+};
