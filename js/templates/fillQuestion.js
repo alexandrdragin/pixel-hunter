@@ -1,6 +1,6 @@
 const questionsCreate = (src, num, sizeW = '468', sizeH = '458', cls = '', cls2 = '') => {
   let questionsMarkDown = (`<div class="game__option">
-    <img src="${src}" alt="Option ${num}" width=${sizeW} height=${sizeH} ${cls}>
+    <img src="${src}" alt="Option ${num}" width=${sizeW} height=${sizeH} class="${cls}">
     <label class="game__answer game__answer--photo">
       <input name="question${num}" type="radio" value="photo">
       <span>Фото</span>
@@ -53,14 +53,14 @@ const fillQuestionTypefindOne = (question) => {
   let markDown = (`<p class="game__task">${task}</p>
 
     <form class="game__content  game__content--triple">
-      <div class="game__option">
-        <img src="${answers[0].image.url}" alt="Option 1" width="${answers[0].image.width}" height="${answers[0].image.height} ${answers[0].type}">
+      <div class="game__option" class="${answers[0].type}">
+        <img src="${answers[0].image.url}" alt="Option 1" width="${answers[0].image.width}" height="${answers[0].image.height}" >
       </div>
-      <div class="game__option  game__option--selected">
-        <img src="${answers[1].image.url}" alt="Option 2" width="${answers[1].image.width}" height="${answers[1].image.height} ${answers[1].type}">
+      <div class="game__option  game__option--selected ${answers[1].type}">
+        <img src="${answers[1].image.url}" alt="Option 2" width="${answers[1].image.width}" height="${answers[1].image.height}" >
       </div>
-      <div class="game__option">
-        <img src="${answers[2].image.url}" alt="Option 3" width="${answers[2].image.width}" height="${answers[2].image.height} ${answers[2].type}">
+      <div class="game__option ${answers[2].type}">
+        <img src="${answers[2].image.url}" alt="Option 3" width="${answers[2].image.width}" height="${answers[2].image.height}" class="${answers[2].type}">
       </div>
     </form>
   `);
