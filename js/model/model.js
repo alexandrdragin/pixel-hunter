@@ -1,4 +1,4 @@
-import questsData from '../data/questsData';
+import initDataAndQuests from '../data/questsData';
 import {setTime,
         setLives,
         setCurrentLevel,
@@ -16,7 +16,7 @@ import {setTime,
 
 class Model {
   constructor(state) {
-    this._state = questsData;
+    this._state = initDataAndQuests;
     this._state.questions = state;
 
     setQuestionsList(this._state, state);
@@ -28,7 +28,7 @@ class Model {
   }
 
   reset() {
-    this._state = questsData;
+    this._state = initDataAndQuests;
   }
 
   get state() {
