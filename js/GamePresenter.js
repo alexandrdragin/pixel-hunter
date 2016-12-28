@@ -18,10 +18,6 @@ class GamePresenter {
     this.content = null;
     this.model = gameData;
 
-    console.log(this.model);
-
-    this.model.loadQuestionsList(gameData);
-
     this.model.updateLives(3);
   }
 

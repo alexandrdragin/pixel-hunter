@@ -25,5 +25,4 @@ import 'whatwg-fetch';
           description: errorText
         });
       });
-
 })();
