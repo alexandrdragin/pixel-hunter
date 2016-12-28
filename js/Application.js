@@ -6,9 +6,11 @@ import rules from './view/rules';
 import stats from './view/stats';
 import errorElement from './view/error';
 
-import gamePresenter from './GamePresenter';
+import GamePresenter from './GamePresenter';
+import Model from './model/model';
 
 let gameData;
+let presenter;
 
 export default class Application {
 
@@ -24,8 +26,13 @@ export default class Application {
     draw(rules());
   }
 
+
   static showGame() {
-    gamePresenter(gameData);
+    if (!presenter) {
+      presenter = new GamePresenter(new Model(gameData));
+    }
+
+    presenter.startGame();
   }
 
   static showStats(data) {
