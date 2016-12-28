@@ -1,4 +1,4 @@
-import questsData from '../data/questsData';
+import initDataAndQuests from '../data/questsData';
 import {setTime,
         setLives,
         setCurrentLevel,
@@ -10,17 +10,25 @@ import {setTime,
         setWrongAnswer,
         setFastAnswer,
         setCorrectAnswer,
-        sliceAnswer
+        sliceAnswer,
+        setQuestionsList
 } from './set';
 
 class Model {
-  constructor(state = questsData) {
-    this._state = state;
-    // вопрос
+  constructor(state) {
+    this._state = initDataAndQuests;
+    this._state.questions = state;
+
+    setQuestionsList(this._state, state);
+
+  }
+
+  loadQuestionsList(state) {
+    this._state = setQuestionsList(this._state, state);
   }
 
   reset() {
-    this._state = questsData;
+    this._state = initDataAndQuests;
   }
 
   get state() {
@@ -87,4 +95,4 @@ class Model {
   }
 }
 
-export default new Model();
+export default Model;
