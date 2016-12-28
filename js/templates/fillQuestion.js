@@ -6,7 +6,7 @@ const questionsCreate = (src, num, sizeW = '468', sizeH = '458', cls = '', cls2 
       <span>Фото</span>
     </label>
     <label class="game__answer ${cls2} game__answer--paint">
-      <input name="question${num}" type="radio" value="paint">
+      <input name="question${num}" type="radio" value="painting">
       <span>Рисунок</span>
     </label>
   </div>`

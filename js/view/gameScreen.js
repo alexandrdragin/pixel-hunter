@@ -49,11 +49,11 @@ export default class GameScreen extends AbstractView {
         for (const item of answers) {
           item.onclick = (event) => {
 
-            const answer = event.target.classList.contains('painting');
+            let answer = event.target.classList.contains('photo');
             if (answer) {
-              this._sendAnswer(answer);
+              this._sendAnswer('photo');
             } else {
-              this._sendAnswer(false);
+              this._sendAnswer('painting');
             }
             this.onClick(event);
           };
@@ -64,7 +64,7 @@ export default class GameScreen extends AbstractView {
           item.onclick = (event) => {
             event.preventDefault();
             const answer = event.target.parentElement.querySelector('input[type=radio]').value;
-            if (answer === 'photo') {
+            if (answer) {
               this._sendAnswer(answer);
             } else {
               this._sendAnswer(false);
@@ -83,8 +83,8 @@ export default class GameScreen extends AbstractView {
 
             if (checkedAnswers.length === 2) {
               const answer = [checkedAnswers[0].value, checkedAnswers[1].value];
-              if (answer.toString() === 'paint,photo') {
-                this._sendAnswer(true);
+              if (answer) {
+                this._sendAnswer(answer.toString());
               } else {
                 this._sendAnswer(false);
               }

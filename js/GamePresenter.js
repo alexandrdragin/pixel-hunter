@@ -95,7 +95,17 @@ class GamePresenter {
   }
 
   sendAnswer(answer) {
-    const isItCorrect = (this.model._state.questions[this.model._state.base.currentLevel - 1].answers[0].type === answer);
+
+    let userAnswers = this.model._state.questions[this.model._state.base.currentLevel - 1].answers.map((e) => {
+      return e.type;
+    }).toString();
+
+    if (this.model._state.questions[this.model._state.base.currentLevel - 1].answers[2]) {
+      userAnswers = this.findOne(event).classList.contains(answer);
+      userAnswers = answer;
+    }
+
+    const isItCorrect = (userAnswers === answer);
     if (isItCorrect) {
       this.rightAnswer(answer);
     } else {
@@ -148,6 +158,10 @@ class GamePresenter {
 
   clearHandlers() {
     this.header.querySelector('.header__back').removeEventListener('click', this.onClick);
+  }
+
+  findOne(event) {
+    return event.target;
   }
 
   onClick() {
