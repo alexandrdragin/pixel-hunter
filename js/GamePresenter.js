@@ -6,20 +6,18 @@ import GameScreen from './view/gameScreen.js';
 
 import Application from './Application';
 import Header from './view/header';
-
-import model from './model/model';
+import loadImages from './utils/loader.js';
 
 class GamePresenter {
-  constructor(GameModel) {
+  constructor(data) {
     this.timer = null;
     this.level = null;
     this.header = null;
     this.content = null;
-    this.model = GameModel;
+    this.model = data;
 
     this.model.updateLives(3);
   }
-
 
   startGame() {
     if (!this.model._state.questions[this.model._state.base.currentLevel]
@@ -86,7 +84,7 @@ class GamePresenter {
 
       this.model.tick();
       this.updateHeader();
-      this.bindHandlers();
+      this.bindBackHandlers();
     }, 1000);
   }
 
@@ -97,7 +95,17 @@ class GamePresenter {
   }
 
   sendAnswer(answer) {
-    const isItCorrect = (this.model._state.questions[this.model._state.base.currentLevel - 1].correctAnswer === answer);
+
+    let userAnswers = this.model._state.questions[this.model._state.base.currentLevel - 1].answers.map((e) => {
+      return e.type;
+    }).toString();
+
+    if (this.model._state.questions[this.model._state.base.currentLevel - 1].answers[2]) {
+      userAnswers = this.findOne(event).classList.contains(answer);
+      userAnswers = answer;
+    }
+
+    const isItCorrect = (userAnswers === answer);
     if (isItCorrect) {
       this.rightAnswer(answer);
     } else {
@@ -136,7 +144,7 @@ class GamePresenter {
     draw(endGame);
   }
 
-  bindHandlers() {
+  bindBackHandlers() {
     this.header.querySelector('.header__back').addEventListener('click', this.onClick);
 
     this.header.querySelector('.header__back').addEventListener('click', () => {
@@ -144,8 +152,16 @@ class GamePresenter {
     });
   }
 
+  bindHandlers() {
+    loadImages(this._element.querySelectorAll('.game__content img'), this._data.answers);
+  }
+
   clearHandlers() {
     this.header.querySelector('.header__back').removeEventListener('click', this.onClick);
+  }
+
+  findOne(event) {
+    return event.target;
   }
 
   onClick() {
@@ -153,6 +169,5 @@ class GamePresenter {
   }
 }
 
-const gamePresenter = new GamePresenter(model);
 
-export default () => gamePresenter.startGame();
+export default GamePresenter;
