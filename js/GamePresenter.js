@@ -101,7 +101,7 @@ class GamePresenter {
     }).toString();
 
     if (this.model._state.questions[this.model._state.base.currentLevel - 1].answers[2]) {
-      userAnswers = this.findOne(event).classList.contains(answer);
+      userAnswers = this.findOne().classList.contains(answer);
       userAnswers = answer;
     }
 
@@ -160,7 +160,7 @@ class GamePresenter {
     this.header.querySelector('.header__back').removeEventListener('click', this.onClick);
   }
 
-  findOne(event) {
+  findOne() {
     return event.target;
   }
 

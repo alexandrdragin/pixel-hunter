@@ -98,7 +98,6 @@ export default class GameScreen extends AbstractView {
     }
   }
 
-  // вопрос  ///////////////////
   clearHandlers() {
     this.answer.removeEventListener('click', this.onClick);
   }
